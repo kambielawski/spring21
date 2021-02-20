@@ -1,0 +1,100 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Feb 15 08:45:56 2021
+# Process ID: 6486
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_wave.wcfg
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_tb.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'mod_m_up_dn_count_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim'
+xvhdl --incr --relax -prj mod_m_up_dn_count_tb_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/design_sources/my_packages/ieee_2008/math_real.vhdl" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/design_sources/my_packages/ieee_2008/math_real-body.vhdl" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/design_sources/my_packages/my_package.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/design_sources/mod_m_up_dn_count.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mod_m_up_dn_count'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/design_sources/my_packages/my_package-body.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mod_m_up_dn_count_tb'
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim'
+xelab -wto 9db8b2d2d5ba4fdaacc551892c8d7742 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot mod_m_up_dn_count_tb_behav xil_defaultlib.mod_m_up_dn_count_tb -log elaborate.log
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2020.2/bin/unwrapped/lnx64.o/xelab -wto 9db8b2d2d5ba4fdaacc551892c8d7742 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot mod_m_up_dn_count_tb_behav xil_defaultlib.mod_m_up_dn_count_tb -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package xil_defaultlib.my_package
+Compiling package xil_defaultlib.math_real
+Compiling package ieee.numeric_std
+Compiling architecture behavioral of entity xil_defaultlib.mod_m_up_dn_count [\mod_m_up_dn_count(m=27)\]
+Compiling architecture behavioral of entity xil_defaultlib.mod_m_up_dn_count_tb
+Built simulation snapshot mod_m_up_dn_count_tb_behav
+
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim/xsim.dir/mod_m_up_dn_count_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim/xsim.dir/mod_m_up_dn_count_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Mon Feb 15 08:51:01 2021. For additional details about this file, please refer to the WebTalk help file at /tools/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Mon Feb 15 08:51:01 2021...
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "mod_m_up_dn_count_tb_behav -key {Behavioral:sim_1:Functional:mod_m_up_dn_count_tb} -tclbatch {mod_m_up_dn_count_tb.tcl} -view {/home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_wave.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_wave.wcfg
+source mod_m_up_dn_count_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'mod_m_up_dn_count_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 7556.859 ; gain = 146.836 ; free physical = 10387 ; free virtual = 15363

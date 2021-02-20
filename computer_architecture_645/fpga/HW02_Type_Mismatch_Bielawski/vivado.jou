@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Feb 15 08:45:56 2021
+# Process ID: 6486
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/HW02_type_mismatches_Bielawski/HW02_type_mismatches_Bielawski.xpr
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_wave.wcfg
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_tb.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW02_Type_Mismatch/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_wave.wcfg
+source mod_m_up_dn_count_tb.tcl

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Feb 10 13:19:16 2021
+# Process ID: 89287
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW01_VSim_Tutorial/mod_m_up_dn_count/645_hw1_up_down_counter/645_hw1_up_down_counter.sim/sim_1/behav/xsim
+# Command line: wbtcv -mode batch -source /home/kam/dev/school/computer_architecture_645/fpga/HW01_VSim_Tutorial/mod_m_up_dn_count/645_hw1_up_down_counter/645_hw1_up_down_counter.sim/sim_1/behav/xsim/xsim.dir/mod_m_up_dn_count_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW01_VSim_Tutorial/mod_m_up_dn_count/645_hw1_up_down_counter/645_hw1_up_down_counter.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW01_VSim_Tutorial/mod_m_up_dn_count/645_hw1_up_down_counter/645_hw1_up_down_counter.sim/sim_1/behav/xsim/webtalk.jou
+#-----------------------------------------------------------
+source /home/kam/dev/school/computer_architecture_645/fpga/HW01_VSim_Tutorial/mod_m_up_dn_count/645_hw1_up_down_counter/645_hw1_up_down_counter.sim/sim_1/behav/xsim/xsim.dir/mod_m_up_dn_count_tb_behav/webtalk/xsim_webtalk.tcl -notrace

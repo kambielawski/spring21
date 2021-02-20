@@ -1,0 +1,1 @@
+-wto "9d80afa0b95643f59c84a87333d5f053" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "mod_m_up_dn_count_tb_behav" "xil_defaultlib.mod_m_up_dn_count_tb" -log "elaborate.log" 

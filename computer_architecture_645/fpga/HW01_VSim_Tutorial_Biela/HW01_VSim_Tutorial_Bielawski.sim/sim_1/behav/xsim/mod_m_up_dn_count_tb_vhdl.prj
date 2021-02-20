@@ -1,0 +1,11 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/design_sources/my_packages/ieee_2008/math_real.vhdl" \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/design_sources/my_packages/ieee_2008/math_real-body.vhdl" \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/design_sources/my_packages/my_package.vhd" \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/design_sources/mod_m_up_dn_count.vhd" \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/design_sources/my_packages/my_package-body.vhd" \
+"../../../../../HW01_VSim_Tutorial/mod_m_up_dn_count/simulation_sources/mod_m_up_dn_count_tb.vhd" \
+
+# Do not sort compile order
+nosort

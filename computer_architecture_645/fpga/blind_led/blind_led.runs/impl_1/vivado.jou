@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Feb  5 12:56:47 2021
+# Process ID: 65207
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/blind_led/blind_led.runs/impl_1
+# Command line: vivado -log switchToLED_vhdl.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source switchToLED_vhdl.tcl -notrace
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/blind_led/blind_led.runs/impl_1/switchToLED_vhdl.vdi
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/blind_led/blind_led.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source switchToLED_vhdl.tcl -notrace
