@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <iostream>
+#include <math.h>
 
 #include "HashTable.h"
 
