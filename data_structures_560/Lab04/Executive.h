@@ -2,25 +2,17 @@
 #define EXECUTIVE_H
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Executive {
 private:
-ifstream& m_infile;
 
 public:
-Executive(ifstream& infile);
+Executive(char *fileName);
 ~Executive();
 void run();
 
 };
-
-Executive::Executive(ifstream& infile) : m_infile(infile) {}
-
-Executive::~Executive() {}
-
-void Executive::run() {
-  cout << "running" << endl;
-}
 
 #endif
