@@ -10,6 +10,9 @@
 #include "execute.h"
 
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 
 #include "quash.h"
 
@@ -27,13 +30,14 @@
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
   // TODO: Get the current working directory. This will fix the prompt path.
-  // HINT: This should be pretty simple
-  IMPLEMENT_ME();
+    
+    // TODO: use a reliable size, not 100
+    char * wd_buf = getcwd(NULL, 100);
 
   // Change this to true if necessary
-  *should_free = false;
+  *should_free = true;
 
-  return "get_current_directory()";
+  return wd_buf;
 }
 
 // Returns the value of an environment variable env_var
@@ -41,13 +45,8 @@ const char* lookup_env(const char* env_var) {
   // TODO: Lookup environment variables. This is required for parser to be able
   // to interpret variables from the command line and display the prompt
   // correctly
-  // HINT: This should be pretty simple
-  IMPLEMENT_ME();
 
-  // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
-
-  return "???";
+  return getenv(env_var);
 }
 
 // Check the status of background jobs
@@ -92,12 +91,11 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
-  // TODO: Remove warning silencers
-  (void) exec; // Silence unused variable warning
-  (void) args; // Silence unused variable warning
-
   // TODO: Implement run generic
-  IMPLEMENT_ME();
+    // TODO: check for "./" or "/" as beginning characters, execv if true
+    // TODO: else search PATH variable for the proper executable
+    // else print error message to stderr
+    execv(exec, args);
 
   perror("ERROR: Failed to execute program");
 }
@@ -108,11 +106,10 @@ void run_echo(EchoCommand cmd) {
   // string is always NULL) list of strings.
   char** str = cmd.args;
 
-  // TODO: Remove warning silencers
-  (void) str; // Silence unused variable warning
-
   // TODO: Implement echo
-  IMPLEMENT_ME();
+    for (int i = 0; (str[i] != NULL); i++)
+        printf("%s ", str[i]);
+    printf("\n");
 
   // Flush the buffer before returning
   fflush(stdout);
@@ -124,13 +121,7 @@ void run_export(ExportCommand cmd) {
   const char* env_var = cmd.env_var;
   const char* val = cmd.val;
 
-  // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
-  (void) val;     // Silence unused variable warning
-
-  // TODO: Implement export.
-  // HINT: This should be quite simple.
-  IMPLEMENT_ME();
+    setenv(env_var, val, 1);
 }
 
 // Changes the current working directory
@@ -145,11 +136,12 @@ void run_cd(CDCommand cmd) {
   }
 
   // TODO: Change directory
+    if (chdir(dir) < 0)
+        fprintf(stderr, "Failed to change directory\n");
 
   // TODO: Update the PWD environment variable to be the new current working
   // directory and optionally update OLD_PWD environment variable to be the old
   // working directory.
-  IMPLEMENT_ME();
 }
 
 // Sends a signal to all processes contained in a job
@@ -168,8 +160,12 @@ void run_kill(KillCommand cmd) {
 
 // Prints the current working directory to stdout
 void run_pwd() {
-  // TODO: Print the current working directory
-  IMPLEMENT_ME();
+
+    // TODO: use reliable size instead of 100
+    char *wd_buf = getcwd(NULL, 100);
+    printf("%s\n", wd_buf);
+
+    free(wd_buf);
 
   // Flush the buffer before returning
   fflush(stdout);
@@ -220,6 +216,9 @@ void child_run_command(Command cmd) {
     break;
 
   case EXPORT:
+    run_export(cmd.export);
+    break;
+
   case CD:
   case KILL:
   case EXIT:
@@ -303,11 +302,23 @@ void create_process(CommandHolder holder) {
   (void) r_app; // Silence unused variable warning
 
   // TODO: Setup pipes, redirects, and new process
-  IMPLEMENT_ME();
+ //  IMPLEMENT_ME();
 
-  //parent_run_command(holder.cmd); // This should be done in the parent branch of
-                                  // a fork
-  //child_run_command(holder.cmd); // This should be done in the child branch of a fork
+    // fork process
+    pid_t fork_pid;
+    
+    if ((fork_pid = fork()) == 0)
+    {
+    // child process
+        child_run_command(holder.cmd);
+
+    } else {
+    // parent process
+        // wait for child to finish
+        waitpid(fork_pid, NULL, 0);
+
+        parent_run_command(holder.cmd);
+    }
 }
 
 // Run a list of commands
@@ -319,6 +330,7 @@ void run_script(CommandHolder* holders) {
 
   if (get_command_holder_type(holders[0]) == EXIT &&
       get_command_holder_type(holders[1]) == EOC) {
+      printf("ENDING MAIN LOOOOOOOOOOOP!\n");
     end_main_loop();
     return;
   }
