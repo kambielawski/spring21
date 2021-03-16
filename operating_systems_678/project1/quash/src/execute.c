@@ -95,7 +95,7 @@ void run_generic(GenericCommand cmd) {
     // TODO: check for "./" or "/" as beginning characters, execv if true
     // TODO: else search PATH variable for the proper executable
     // else print error message to stderr
-    execv(exec, args);
+    execvp(exec, args); 
 
   perror("ERROR: Failed to execute program");
 }
@@ -135,13 +135,22 @@ void run_cd(CDCommand cmd) {
     return;
   }
 
+    char *newdir = realpath(dir, NULL);
+
   // TODO: Change directory
-    if (chdir(dir) < 0)
+    if (chdir(newdir) < 0)
         fprintf(stderr, "Failed to change directory\n");
 
   // TODO: Update the PWD environment variable to be the new current working
   // directory and optionally update OLD_PWD environment variable to be the old
   // working directory.
+
+  // update OLD_PWD env var to old PWD
+    setenv("OLD_PWD", getenv("PWD"), 1);
+
+    char *wd_buf = getcwd(NULL, 256);
+    setenv("PWD", wd_buf, 1);
+    free(wd_buf);
 }
 
 // Sends a signal to all processes contained in a job
@@ -228,6 +237,7 @@ void child_run_command(Command cmd) {
   default:
     fprintf(stderr, "Unknown command type: %d\n", type);
   }
+    exit(0);
 }
 
 /**
@@ -302,6 +312,12 @@ void create_process(CommandHolder holder) {
   (void) r_app; // Silence unused variable warning
 
   // TODO: Setup pipes, redirects, and new process
+    
+    if (p_in) printf("p_in true\n");
+    if (p_out) printf("p_out true\n");
+    if (r_in) printf("r_in true\n");
+    if (r_out) printf("r_out true\n");
+    if (r_app) printf("r_app true\n");
  //  IMPLEMENT_ME();
 
     // fork process
@@ -344,11 +360,16 @@ void run_script(CommandHolder* holders) {
   if (!(holders[0].flags & BACKGROUND)) {
     // Not a background Job
     // TODO: Wait for all processes under the job to complete
+    wait(NULL);
     IMPLEMENT_ME();
   }
   else {
     // A background job.
+    JobQueue *queue = get_job_queue();
+
     // TODO: Push the new job to the job queue
+    printf("creating background job\n");
+    printf("%s\n", get_command_string());
     IMPLEMENT_ME();
 
     // TODO: Once jobs are implemented, uncomment and fill the following line
