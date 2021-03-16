@@ -12,6 +12,17 @@
 #include <stdlib.h>
 
 #include "execute.h"
+#include "deque.h"
+
+
+typedef struct Job {
+    int job_id;         // Job ID
+    pid_t *pids;        // List of process IDs for all processes in job
+    char *cmd_str;      // Initial command string of job
+} Job;
+
+IMPLEMENT_DEQUE_STRUCT(JobQueue, Job);
+PROTOTYPE_DEQUE(JobQueue, Job);
 
 /**
  * @brief Holds information about the state and environment Quash is running in
@@ -22,7 +33,10 @@ typedef struct QuashState {
                      * or the command line */
   char* parsed_str; /**< Holds a string representing the parsed structure of the
                      * command input from the command line */
+  JobQueue job_queue;
 } QuashState;
+
+JobQueue* get_job_queue();
 
 /**
  * @brief Check if Quash is receiving input from the command line (TTY)

@@ -20,6 +20,8 @@
 #include "parsing_interface.h"
 #include "memory_pool.h"
 
+IMPLEMENT_DEQUE(JobQueue, Job);
+
 /**************************************************************************
  * Private Variables
  **************************************************************************/
@@ -32,7 +34,8 @@ static QuashState initial_state() {
   return (QuashState) {
     true,
     isatty(STDIN_FILENO),
-    NULL
+    NULL,
+    new_JobQueue(1)
   };
 }
 
@@ -75,6 +78,7 @@ static void print_prompt() {
     free(cwd);
 }
 
+
 /**************************************************************************
  * Public Functions
  **************************************************************************/
@@ -98,6 +102,10 @@ void end_main_loop() {
   state.running = false;
 }
 
+JobQueue* get_job_queue() {
+    return &(state.job_queue);
+}
+
 /**
  * @brief Quash entry point
  *
@@ -108,8 +116,8 @@ void end_main_loop() {
  * @return program exit status
  */
 int main(int argc, char** argv) {
-  state = initial_state();
-
+    state = initial_state();
+     
   if (is_tty()) {
     puts("Welcome to Quash!");
     puts("Type \"exit\" or \"quit\" to quit");
