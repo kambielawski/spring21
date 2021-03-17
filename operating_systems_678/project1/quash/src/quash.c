@@ -20,6 +20,7 @@
 #include "parsing_interface.h"
 #include "memory_pool.h"
 
+/* Declare the deque functions */
 IMPLEMENT_DEQUE(JobQueue, Job);
 
 /**************************************************************************

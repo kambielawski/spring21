@@ -304,28 +304,44 @@ void create_process(CommandHolder holder) {
   bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
 
-  // TODO: Remove warning silencers
-  (void) p_in;  // Silence unused variable warning
-  (void) p_out; // Silence unused variable warning
-  (void) r_in;  // Silence unused variable warning
-  (void) r_out; // Silence unused variable warning
-  (void) r_app; // Silence unused variable warning
-
   // TODO: Setup pipes, redirects, and new process
+    int ppipe[2];
+    pipe(ppipe);
     
     if (p_in) printf("p_in true\n");
     if (p_out) printf("p_out true\n");
     if (r_in) printf("r_in true\n");
     if (r_out) printf("r_out true\n");
     if (r_app) printf("r_app true\n");
- //  IMPLEMENT_ME();
 
     // fork process
     pid_t fork_pid;
     
+    // child process
     if ((fork_pid = fork()) == 0)
     {
-    // child process
+        // redirect standard input of this command to file holder.redirect_in
+        if (r_in) {
+            // open the redirect file
+            FILE *file = open(holder.redirect_in, O_RDONLY);
+            // redirect file descriptor to stdin of this process
+            dup2(fileno(file), STDIN_FILENO);
+        // redirect standard output to file holder.redirect_out
+        } else if (r_out) {
+            // open the redirect file
+            FILE *file = r_app ? open(holder.redirect_out, O_APPEND) : open(holder.redirect_out, O_WRONLY);
+            // redirect file output to stdout of process
+            dup2(STDOUT_FILENO, fileno(file));
+
+        }
+
+        // piping input in/out
+        if (p_in) {
+
+        } else if (p_out) {
+
+        }
+        pid_t child_pid = getpid();
         child_run_command(holder.cmd);
 
     } else {
@@ -346,7 +362,6 @@ void run_script(CommandHolder* holders) {
 
   if (get_command_holder_type(holders[0]) == EXIT &&
       get_command_holder_type(holders[1]) == EOC) {
-      printf("ENDING MAIN LOOOOOOOOOOOP!\n");
     end_main_loop();
     return;
   }
@@ -366,6 +381,16 @@ void run_script(CommandHolder* holders) {
   else {
     // A background job.
     JobQueue *queue = get_job_queue();
+    int jobid;
+
+    // set the job id
+    if (is_empty_JobQueue(queue))
+        jobid = 1;
+    else
+        jobid = peek_back_JobQueue(queue).job_id + 1; 
+
+    // get total command string
+    char *cmd_str = get_command_string();
 
     // TODO: Push the new job to the job queue
     printf("creating background job\n");

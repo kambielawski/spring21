@@ -21,7 +21,9 @@ typedef struct Job {
     char *cmd_str;      // Initial command string of job
 } Job;
 
+/* Generate the JobQueue struct */
 IMPLEMENT_DEQUE_STRUCT(JobQueue, Job);
+/* Define the JobQueue functions */
 PROTOTYPE_DEQUE(JobQueue, Job);
 
 /**
