@@ -296,7 +296,7 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
-void create_process(CommandHolder holder) {
+void create_process(CommandHolder holder, int inpipe[2], int outpipe[2]) {
     // Read the flags field from the parser
     bool p_in  = holder.flags & PIPE_IN;
     bool p_out = holder.flags & PIPE_OUT;
@@ -330,7 +330,8 @@ void create_process(CommandHolder holder) {
             // redirect file descriptor to stdin of this process
             dup2(fileno(file), STDIN_FILENO);
             // redirect standard output to file holder.redirect_out
-        } else if (r_out) {
+        } 
+        if (r_out) {
             // open the redirect file
             FILE *file = r_app ? open(holder.redirect_out, O_CREAT | O_APPEND) : open(holder.redirect_out, O_CREAT | O_WRONLY);
             // redirect stdout to file 
@@ -341,14 +342,15 @@ void create_process(CommandHolder holder) {
         // piping input in/out
         if (p_in) {
             // redirect read end to stdin
-            dup2(STDIN_FILENO, ppipe[0]);
+            dup2(ppipe[0], STDIN_FILENO);
             close(ppipe[1]);
-        } else if (p_out) {
+        } 
+        if (p_out) {
             // redirect stdout to write end of pipe
             dup2(ppipe[1], STDOUT_FILENO);
             close(ppipe[0]);
         } else {
-            close(ppipe[0]);
+           close(ppipe[0]);
             close(ppipe[1]);
         }
         
@@ -385,10 +387,7 @@ void run_script(CommandHolder* holders) {
     Job job;
     job.cmd_str = get_command_string();                  // assign command string
     job.pid_queue = new_ProcessQueue(1);                 // create process queue
-    if (is_empty_JobQueue(queue))                        // assign job id
-        job.job_id = 1;
-    else
-        job.job_id = peek_back_JobQueue(queue).job_id + 1; 
+    job.job_id = is_empty_JobQueue(queue) ? 1 : peek_back_JobQueue(queue).job_id + 1; 
 
     // Run all commands in the `holder` array
     for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
@@ -397,9 +396,8 @@ void run_script(CommandHolder* holders) {
     if (!(holders[0].flags & BACKGROUND)) {
         // Not a background Job
         // TODO: Wait for all processes under the job to complete
-        // pid_t wait_pid = peek_back_ProcessQueue(&(job.pid_queue)).pid;
-        // waitpid(wait_pid, NULL, 0);
-        wait(NULL);
+        pid_t wait_pid = peek_back_ProcessQueue(&(job.pid_queue)).pid;
+        waitpid(wait_pid, NULL, 0);
         IMPLEMENT_ME();
     }
     else {
