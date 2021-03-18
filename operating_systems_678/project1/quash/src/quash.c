@@ -23,6 +23,9 @@
 /* Declare the deque functions */
 IMPLEMENT_DEQUE(JobQueue, Job);
 
+/* Declare process deque functions */
+IMPLEMENT_DEQUE(ProcessQueue, Process);
+
 /**************************************************************************
  * Private Variables
  **************************************************************************/

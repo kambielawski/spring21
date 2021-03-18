@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 
@@ -21,7 +22,7 @@
  * @brief Note calls to any function that requires implementation
  */
 #define IMPLEMENT_ME()                                                  \
-  fprintf(stderr, "IMPLEMENT ME: %s(line %d): %s()\n", __FILE__, __LINE__, __FUNCTION__)
+    fprintf(stderr, "IMPLEMENT ME: %s(line %d): %s()\n", __FILE__, __LINE__, __FUNCTION__)
 
 /***************************************************************************
  * Interface Functions
@@ -29,54 +30,54 @@
 
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
-  // TODO: Get the current working directory. This will fix the prompt path.
-    
+    // TODO: Get the current working directory. This will fix the prompt path.
+
     // TODO: use a reliable size, not 100
     char * wd_buf = getcwd(NULL, 100);
 
-  // Change this to true if necessary
-  *should_free = true;
+    // Change this to true if necessary
+    *should_free = true;
 
-  return wd_buf;
+    return wd_buf;
 }
 
 // Returns the value of an environment variable env_var
 const char* lookup_env(const char* env_var) {
-  // TODO: Lookup environment variables. This is required for parser to be able
-  // to interpret variables from the command line and display the prompt
-  // correctly
+    // TODO: Lookup environment variables. This is required for parser to be able
+    // to interpret variables from the command line and display the prompt
+    // correctly
 
-  return getenv(env_var);
+    return getenv(env_var);
 }
 
 // Check the status of background jobs
 void check_jobs_bg_status() {
-  // TODO: Check on the statuses of all processes belonging to all background
-  // jobs. This function should remove jobs from the jobs queue once all
-  // processes belonging to a job have completed.
-  IMPLEMENT_ME();
+    // TODO: Check on the statuses of all processes belonging to all background
+    // jobs. This function should remove jobs from the jobs queue once all
+    // processes belonging to a job have completed.
+    IMPLEMENT_ME();
 
-  // TODO: Once jobs are implemented, uncomment and fill the following line
-  // print_job_bg_complete(job_id, pid, cmd);
+    // TODO: Once jobs are implemented, uncomment and fill the following line
+    // print_job_bg_complete(job_id, pid, cmd);
 }
 
 // Prints the job id number, the process id of the first process belonging to
 // the Job, and the command string associated with this job
 void print_job(int job_id, pid_t pid, const char* cmd) {
-  printf("[%d]\t%8d\t%s\n", job_id, pid, cmd);
-  fflush(stdout);
+    printf("[%d]\t%8d\t%s\n", job_id, pid, cmd);
+    fflush(stdout);
 }
 
 // Prints a start up message for background processes
 void print_job_bg_start(int job_id, pid_t pid, const char* cmd) {
-  printf("Background job started: ");
-  print_job(job_id, pid, cmd);
+    printf("Background job started: ");
+    print_job(job_id, pid, cmd);
 }
 
 // Prints a completion message followed by the print job
 void print_job_bg_complete(int job_id, pid_t pid, const char* cmd) {
-  printf("Completed: \t");
-  print_job(job_id, pid, cmd);
+    printf("Completed: \t");
+    print_job(job_id, pid, cmd);
 }
 
 /***************************************************************************
@@ -85,67 +86,67 @@ void print_job_bg_complete(int job_id, pid_t pid, const char* cmd) {
 // Run a program reachable by the path environment variable, relative path, or
 // absolute path
 void run_generic(GenericCommand cmd) {
-  // Execute a program with a list of arguments. The `args` array is a NULL
-  // terminated (last string is always NULL) list of strings. The first element
-  // in the array is the executable
-  char* exec = cmd.args[0];
-  char** args = cmd.args;
+    // Execute a program with a list of arguments. The `args` array is a NULL
+    // terminated (last string is always NULL) list of strings. The first element
+    // in the array is the executable
+    char* exec = cmd.args[0];
+    char** args = cmd.args;
 
-  // TODO: Implement run generic
+    // TODO: Implement run generic
     // TODO: check for "./" or "/" as beginning characters, execv if true
     // TODO: else search PATH variable for the proper executable
     // else print error message to stderr
     execvp(exec, args); 
 
-  perror("ERROR: Failed to execute program");
+    perror("ERROR: Failed to execute program");
 }
 
 // Print strings
 void run_echo(EchoCommand cmd) {
-  // Print an array of strings. The args array is a NULL terminated (last
-  // string is always NULL) list of strings.
-  char** str = cmd.args;
+    // Print an array of strings. The args array is a NULL terminated (last
+    // string is always NULL) list of strings.
+    char** str = cmd.args;
 
-  // TODO: Implement echo
+    // TODO: Implement echo
     for (int i = 0; (str[i] != NULL); i++)
         printf("%s ", str[i]);
     printf("\n");
 
-  // Flush the buffer before returning
-  fflush(stdout);
+    // Flush the buffer before returning
+    fflush(stdout);
 }
 
 // Sets an environment variable
 void run_export(ExportCommand cmd) {
-  // Write an environment variable
-  const char* env_var = cmd.env_var;
-  const char* val = cmd.val;
+    // Write an environment variable
+    const char* env_var = cmd.env_var;
+    const char* val = cmd.val;
 
     setenv(env_var, val, 1);
 }
 
 // Changes the current working directory
 void run_cd(CDCommand cmd) {
-  // Get the directory name
-  const char* dir = cmd.dir;
+    // Get the directory name
+    const char* dir = cmd.dir;
 
-  // Check if the directory is valid
-  if (dir == NULL) {
-    perror("ERROR: Failed to resolve path");
-    return;
-  }
+    // Check if the directory is valid
+    if (dir == NULL) {
+        perror("ERROR: Failed to resolve path");
+        return;
+    }
 
     char *newdir = realpath(dir, NULL);
 
-  // TODO: Change directory
+    // TODO: Change directory
     if (chdir(newdir) < 0)
         fprintf(stderr, "Failed to change directory\n");
 
-  // TODO: Update the PWD environment variable to be the new current working
-  // directory and optionally update OLD_PWD environment variable to be the old
-  // working directory.
+    // TODO: Update the PWD environment variable to be the new current working
+    // directory and optionally update OLD_PWD environment variable to be the old
+    // working directory.
 
-  // update OLD_PWD env var to old PWD
+    // update OLD_PWD env var to old PWD
     setenv("OLD_PWD", getenv("PWD"), 1);
 
     char *wd_buf = getcwd(NULL, 256);
@@ -155,15 +156,15 @@ void run_cd(CDCommand cmd) {
 
 // Sends a signal to all processes contained in a job
 void run_kill(KillCommand cmd) {
-  int signal = cmd.sig;
-  int job_id = cmd.job;
+    int signal = cmd.sig;
+    int job_id = cmd.job;
 
-  // TODO: Remove warning silencers
-  (void) signal; // Silence unused variable warning
-  (void) job_id; // Silence unused variable warning
+    // TODO: Remove warning silencers
+    (void) signal; // Silence unused variable warning
+    (void) job_id; // Silence unused variable warning
 
-  // TODO: Kill all processes associated with a background job
-  IMPLEMENT_ME();
+    // TODO: Kill all processes associated with a background job
+    IMPLEMENT_ME();
 }
 
 
@@ -176,17 +177,17 @@ void run_pwd() {
 
     free(wd_buf);
 
-  // Flush the buffer before returning
-  fflush(stdout);
+    // Flush the buffer before returning
+    fflush(stdout);
 }
 
 // Prints all background jobs currently in the job list to stdout
 void run_jobs() {
-  // TODO: Print background jobs
-  IMPLEMENT_ME();
+    // TODO: Print background jobs
+    IMPLEMENT_ME();
 
-  // Flush the buffer before returning
-  fflush(stdout);
+    // Flush the buffer before returning
+    fflush(stdout);
 }
 
 /***************************************************************************
@@ -205,38 +206,38 @@ void run_jobs() {
  * @sa Command
  */
 void child_run_command(Command cmd) {
-  CommandType type = get_command_type(cmd);
+    CommandType type = get_command_type(cmd);
 
-  switch (type) {
-  case GENERIC:
-    run_generic(cmd.generic);
-    break;
+    switch (type) {
+        case GENERIC:
+            run_generic(cmd.generic);
+            break;
 
-  case ECHO:
-    run_echo(cmd.echo);
-    break;
+        case ECHO:
+            run_echo(cmd.echo);
+            break;
 
-  case PWD:
-    run_pwd();
-    break;
+        case PWD:
+            run_pwd();
+            break;
 
-  case JOBS:
-    run_jobs();
-    break;
+        case JOBS:
+            run_jobs();
+            break;
 
-  case EXPORT:
-    run_export(cmd.export);
-    break;
+        case EXPORT:
+            run_export(cmd.export);
+            break;
 
-  case CD:
-  case KILL:
-  case EXIT:
-  case EOC:
-    break;
+        case CD:
+        case KILL:
+        case EXIT:
+        case EOC:
+            break;
 
-  default:
-    fprintf(stderr, "Unknown command type: %d\n", type);
-  }
+        default:
+            fprintf(stderr, "Unknown command type: %d\n", type);
+    }
     exit(0);
 }
 
@@ -252,32 +253,32 @@ void child_run_command(Command cmd) {
  * @sa Command
  */
 void parent_run_command(Command cmd) {
-  CommandType type = get_command_type(cmd);
+    CommandType type = get_command_type(cmd);
 
-  switch (type) {
-  case EXPORT:
-    run_export(cmd.export);
-    break;
+    switch (type) {
+        case EXPORT:
+            run_export(cmd.export);
+            break;
 
-  case CD:
-    run_cd(cmd.cd);
-    break;
+        case CD:
+            run_cd(cmd.cd);
+            break;
 
-  case KILL:
-    run_kill(cmd.kill);
-    break;
+        case KILL:
+            run_kill(cmd.kill);
+            break;
 
-  case GENERIC:
-  case ECHO:
-  case PWD:
-  case JOBS:
-  case EXIT:
-  case EOC:
-    break;
+        case GENERIC:
+        case ECHO:
+        case PWD:
+        case JOBS:
+        case EXIT:
+        case EOC:
+            break;
 
-  default:
-    fprintf(stderr, "Unknown command type: %d\n", type);
-  }
+        default:
+            fprintf(stderr, "Unknown command type: %d\n", type);
+    }
 }
 
 /**
@@ -296,18 +297,19 @@ void parent_run_command(Command cmd) {
  * @sa Command CommandHolder
  */
 void create_process(CommandHolder holder) {
-  // Read the flags field from the parser
-  bool p_in  = holder.flags & PIPE_IN;
-  bool p_out = holder.flags & PIPE_OUT;
-  bool r_in  = holder.flags & REDIRECT_IN;
-  bool r_out = holder.flags & REDIRECT_OUT;
-  bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
-                                               // is true
+    // Read the flags field from the parser
+    bool p_in  = holder.flags & PIPE_IN;
+    bool p_out = holder.flags & PIPE_OUT;
+    bool r_in  = holder.flags & REDIRECT_IN;
+    bool r_out = holder.flags & REDIRECT_OUT;
+    bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
+    // is true
 
-  // TODO: Setup pipes, redirects, and new process
+    // TODO: Setup pipes, redirects, and new process
     int ppipe[2];
     pipe(ppipe);
-    
+
+
     if (p_in) printf("p_in true\n");
     if (p_out) printf("p_out true\n");
     if (r_in) printf("r_in true\n");
@@ -316,88 +318,101 @@ void create_process(CommandHolder holder) {
 
     // fork process
     pid_t fork_pid;
-    
+
     // child process
     if ((fork_pid = fork()) == 0)
     {
+
         // redirect standard input of this command to file holder.redirect_in
         if (r_in) {
             // open the redirect file
             FILE *file = open(holder.redirect_in, O_RDONLY);
             // redirect file descriptor to stdin of this process
             dup2(fileno(file), STDIN_FILENO);
-        // redirect standard output to file holder.redirect_out
+            // redirect standard output to file holder.redirect_out
         } else if (r_out) {
             // open the redirect file
-            FILE *file = r_app ? open(holder.redirect_out, O_APPEND) : open(holder.redirect_out, O_WRONLY);
-            // redirect file output to stdout of process
+            FILE *file = r_app ? open(holder.redirect_out, O_CREAT | O_APPEND) : open(holder.redirect_out, O_CREAT | O_WRONLY);
+            // redirect stdout to file 
             dup2(STDOUT_FILENO, fileno(file));
 
         }
 
         // piping input in/out
         if (p_in) {
-
+            // redirect read end to stdin
+            dup2(STDIN_FILENO, ppipe[0]);
+            close(ppipe[1]);
         } else if (p_out) {
-
+            // redirect stdout to write end of pipe
+            dup2(ppipe[1], STDOUT_FILENO);
+            close(ppipe[0]);
+        } else {
+            close(ppipe[0]);
+            close(ppipe[1]);
         }
+        
+        // TODO: somehow push child process to job's process queue
         pid_t child_pid = getpid();
+
+        // execute stuff
         child_run_command(holder.cmd);
 
     } else {
-    // parent process
-        // wait for child to finish
-        waitpid(fork_pid, NULL, 0);
-
+        // parent process
         parent_run_command(holder.cmd);
     }
 }
 
 // Run a list of commands
 void run_script(CommandHolder* holders) {
-  if (holders == NULL)
-    return;
+    if (holders == NULL)
+        return;
 
-  check_jobs_bg_status();
+    check_jobs_bg_status();
 
-  if (get_command_holder_type(holders[0]) == EXIT &&
-      get_command_holder_type(holders[1]) == EOC) {
-    end_main_loop();
-    return;
-  }
+    if (get_command_holder_type(holders[0]) == EXIT &&
+            get_command_holder_type(holders[1]) == EOC) {
+        end_main_loop();
+        return;
+    }
 
-  CommandType type;
+    CommandType type;
 
-  // Run all commands in the `holder` array
-  for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
-    create_process(holders[i]);
-
-  if (!(holders[0].flags & BACKGROUND)) {
-    // Not a background Job
-    // TODO: Wait for all processes under the job to complete
-    wait(NULL);
-    IMPLEMENT_ME();
-  }
-  else {
-    // A background job.
     JobQueue *queue = get_job_queue();
-    int jobid;
 
-    // set the job id
-    if (is_empty_JobQueue(queue))
-        jobid = 1;
+    // create new job 
+    Job job;
+    job.cmd_str = get_command_string();                  // assign command string
+    job.pid_queue = new_ProcessQueue(1);                 // create process queue
+    if (is_empty_JobQueue(queue))                        // assign job id
+        job.job_id = 1;
     else
-        jobid = peek_back_JobQueue(queue).job_id + 1; 
+        job.job_id = peek_back_JobQueue(queue).job_id + 1; 
 
-    // get total command string
-    char *cmd_str = get_command_string();
+    // Run all commands in the `holder` array
+    for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
+        create_process(holders[i]);
 
-    // TODO: Push the new job to the job queue
-    printf("creating background job\n");
-    printf("%s\n", get_command_string());
-    IMPLEMENT_ME();
+    if (!(holders[0].flags & BACKGROUND)) {
+        // Not a background Job
+        // TODO: Wait for all processes under the job to complete
+        // pid_t wait_pid = peek_back_ProcessQueue(&(job.pid_queue)).pid;
+        // waitpid(wait_pid, NULL, 0);
+        wait(NULL);
+        IMPLEMENT_ME();
+    }
+    else {
+        // A background job.
 
-    // TODO: Once jobs are implemented, uncomment and fill the following line
-    // print_job_bg_start(job_id, pid, cmd);
-  }
+
+
+        // TODO: Push the new job to the job queue
+        printf("creating background job\n");
+        printf("%s\n", get_command_string());
+        IMPLEMENT_ME();
+
+        // TODO: Once jobs are implemented, uncomment and fill the following line
+        // print_job_bg_start(job_id, pid, cmd);
+    }
 }

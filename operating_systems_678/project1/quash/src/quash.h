@@ -14,10 +14,17 @@
 #include "execute.h"
 #include "deque.h"
 
+typedef struct Process {
+    pid_t pid;
+} Process;
+/* make a queue of pids */
+IMPLEMENT_DEQUE_STRUCT(ProcessQueue, Process);
+/* Define Process Queue functions */
+PROTOTYPE_DEQUE(ProcessQueue, Process);
 
 typedef struct Job {
     int job_id;         // Job ID
-    pid_t *pids;        // List of process IDs for all processes in job
+    ProcessQueue pid_queue;        // List of process IDs for all processes in job
     char *cmd_str;      // Initial command string of job
 } Job;
 
