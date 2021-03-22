@@ -431,7 +431,9 @@ void create_process(CommandHolder holder, int pipes[][2], int num_cmds, int proc
             dup2(r_out_fd, STDOUT_FILENO);
             close(r_out_fd);
         }
-
+        
+        // TODO: somehow push child process to job's process queue
+        pid_t child_pid = getpid();
 
         // execute stuff
         child_run_command(holder.cmd);
@@ -484,10 +486,7 @@ void run_script(CommandHolder* holders) {
     Job job;
     job.cmd_str = get_command_string();                  // assign command string
     job.pid_queue = new_ProcessQueue(1);                 // create process queue
-    if (is_empty_JobQueue(queue))                        // assign job id
-        job.job_id = 1;
-    else
-        job.job_id = peek_back_JobQueue(queue).job_id + 1; 
+    job.job_id = is_empty_JobQueue(queue) ? 1 : peek_back_JobQueue(queue).job_id + 1; 
 
     /* Initialize pipe array */
     int num_cmds = num_commands(holders);
