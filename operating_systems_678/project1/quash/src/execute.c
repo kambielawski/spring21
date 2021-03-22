@@ -43,22 +43,44 @@ char* get_current_directory(bool* should_free) {
 
 // Returns the value of an environment variable env_var
 const char* lookup_env(const char* env_var) {
-    // TODO: Lookup environment variables. This is required for parser to be able
-    // to interpret variables from the command line and display the prompt
-    // correctly
-
     return getenv(env_var);
 }
 
 // Check the status of background jobs
-void check_jobs_bg_status() {
+void check_jobs_bg_status(JobQueue *job_queue) {
     // TODO: Check on the statuses of all processes belonging to all background
     // jobs. This function should remove jobs from the jobs queue once all
     // processes belonging to a job have completed.
-    IMPLEMENT_ME();
 
-    // TODO: Once jobs are implemented, uncomment and fill the following line
-    // print_job_bg_complete(job_id, pid, cmd);
+    size_t arr_size;
+    Job *job_arr = as_array_JobQueue(job_queue, &arr_size); 
+
+    int last_pid;
+    bool complete[arr_size];
+    
+    // iterate over jobs and check if last process is complete
+    for (int j = 0; j < arr_size; j++) {
+        last_pid = peek_front_ProcessQueue(&(job_arr[j].pid_queue)).pid;
+        complete[j] = true;
+        // check if last process exists
+        if (kill(last_pid, 0) == 0) {
+            complete[j] = false;
+        } else {
+            // if job complete, call complete for job
+            print_job_bg_complete(job_arr[j].job_id, last_pid, job_arr[j].cmd_str);
+        }
+    }
+
+    // TODO: reinitialize job queue 
+    destroy_JobQueue(job_queue);
+    *job_queue = new_JobQueue(1);
+    for (int i = 0; i < arr_size; i++) {
+        if (!complete[i])
+            push_back_JobQueue(job_queue, job_arr[i]);
+    }
+
+    job_queue = NULL;
+    free(job_arr);
 }
 
 // Prints the job id number, the process id of the first process belonging to
@@ -92,10 +114,6 @@ void run_generic(GenericCommand cmd) {
     char* exec = cmd.args[0];
     char** args = cmd.args;
 
-    // TODO: Implement run generic
-    // TODO: check for "./" or "/" as beginning characters, execv if true
-    // TODO: else search PATH variable for the proper executable
-    // else print error message to stderr
     execvp(exec, args); 
 
     perror("ERROR: Failed to execute program");
@@ -111,6 +129,11 @@ void run_echo(EchoCommand cmd) {
     for (int i = 0; (str[i] != NULL); i++)
         printf("%s ", str[i]);
     printf("\n");
+
+    // free str
+    for (int i = 0; (str[i] != NULL); i++)
+        str[i] = NULL;
+    str = NULL;
 
     // Flush the buffer before returning
     fflush(stdout);
@@ -151,6 +174,8 @@ void run_cd(CDCommand cmd) {
 
     char *wd_buf = getcwd(NULL, 256);
     setenv("PWD", wd_buf, 1);
+
+    free(newdir);
     free(wd_buf);
 }
 
@@ -159,12 +184,39 @@ void run_kill(KillCommand cmd) {
     int signal = cmd.sig;
     int job_id = cmd.job;
 
-    // TODO: Remove warning silencers
-    (void) signal; // Silence unused variable warning
-    (void) job_id; // Silence unused variable warning
+    JobQueue *job_queue = get_job_queue();
+    size_t arr_size;
+    Job *job_arr = as_array_JobQueue(job_queue, &arr_size);
 
-    // TODO: Kill all processes associated with a background job
-    IMPLEMENT_ME();
+    int index_killed = -1;
+
+    // find and kill process
+    for (int j = 0; j < arr_size; j++) {
+        if (job_arr[j].job_id == job_id) {
+            // kill all processes
+            print_job_bg_complete(job_arr[j].job_id, peek_front_ProcessQueue(&(job_arr[j].pid_queue)).pid, job_arr[j].cmd_str);
+            while (!is_empty_ProcessQueue(&(job_arr[j].pid_queue))) {
+                // free up cmd_str
+                free(job_arr[j].cmd_str);
+                kill(pop_front_ProcessQueue(&(job_arr[j].pid_queue)).pid, signal);
+            }
+            destroy_ProcessQueue(&(job_arr[j].pid_queue));
+            // destroy process queue 
+            index_killed = j;
+        }
+    }
+
+    // reinitialize job queue w/o killed process
+    *job_queue = new_JobQueue(1);
+    for (int i = 0; i < arr_size; i++) {
+        if (i != index_killed)
+            push_back_JobQueue(job_queue, job_arr[i]);
+    }
+
+    // mem cleanup
+    job_queue = NULL;
+    free(job_arr);
+
 }
 
 
@@ -175,6 +227,7 @@ void run_pwd() {
     char *wd_buf = getcwd(NULL, 100);
     printf("%s\n", wd_buf);
 
+    // mem cleanup
     free(wd_buf);
 
     // Flush the buffer before returning
@@ -183,8 +236,25 @@ void run_pwd() {
 
 // Prints all background jobs currently in the job list to stdout
 void run_jobs() {
-    // TODO: Print background jobs
-    IMPLEMENT_ME();
+    JobQueue *job_queue = get_job_queue();
+    size_t arr_size;
+
+    // get the queue as an array for iteration
+    Job *job_arr = as_array_JobQueue(job_queue, &arr_size);
+    for (int i = 0; i < arr_size; i++) {
+        print_job(job_arr[i].job_id, peek_front_ProcessQueue(&(job_arr[i].pid_queue)).pid, job_arr[i].cmd_str);
+    }
+
+    // as_array_JobQueue has invalidated the queue, so we must reinitialize it
+    // TODO: reinitialize job queue 
+    *job_queue = new_JobQueue(1);
+    for (int i = 0; i < arr_size; i++) {
+        push_back_JobQueue(job_queue, job_arr[i]);
+    }
+
+    // mem cleanup
+    job_queue = NULL;
+    free(job_arr);
 
     // Flush the buffer before returning
     fflush(stdout);
@@ -238,7 +308,6 @@ void child_run_command(Command cmd) {
         default:
             fprintf(stderr, "Unknown command type: %d\n", type);
     }
-    exit(0);
 }
 
 /**
@@ -296,7 +365,7 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
-void create_process(CommandHolder holder) {
+void create_process(CommandHolder holder, int pipes[][2], int num_cmds, int process_index, Job *job) {
     // Read the flags field from the parser
     bool p_in  = holder.flags & PIPE_IN;
     bool p_out = holder.flags & PIPE_OUT;
@@ -305,63 +374,94 @@ void create_process(CommandHolder holder) {
     bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
     // is true
 
-    // TODO: Setup pipes, redirects, and new process
-    int ppipe[2];
-    pipe(ppipe);
-
-
-    if (p_in) printf("p_in true\n");
-    if (p_out) printf("p_out true\n");
-    if (r_in) printf("r_in true\n");
-    if (r_out) printf("r_out true\n");
-    if (r_app) printf("r_app true\n");
+    // pipe indices
+    int inpipe_index = process_index - 1;
+    int outpipe_index = process_index;
 
     // fork process
     pid_t fork_pid;
 
+    // set up redirect files
+    int r_in_fd;
+    int r_out_fd;
+
+    // setup file descriptors
+    if (r_out) {
+        if (r_app) 
+            r_out_fd = open(holder.redirect_out, O_WRONLY | O_CREAT | O_APPEND, 0666);
+        else 
+            r_out_fd = open(holder.redirect_out, O_WRONLY | O_CREAT, 0666);
+    }
+    if (r_in)
+        r_in_fd = open(holder.redirect_in, O_RDONLY);
+
     // child process
     if ((fork_pid = fork()) == 0)
     {
-
-        // redirect standard input of this command to file holder.redirect_in
-        if (r_in) {
-            // open the redirect file
-            FILE *file = open(holder.redirect_in, O_RDONLY);
-            // redirect file descriptor to stdin of this process
-            dup2(fileno(file), STDIN_FILENO);
-            // redirect standard output to file holder.redirect_out
-        } else if (r_out) {
-            // open the redirect file
-            FILE *file = r_app ? open(holder.redirect_out, O_CREAT | O_APPEND) : open(holder.redirect_out, O_CREAT | O_WRONLY);
-            // redirect stdout to file 
-            dup2(STDOUT_FILENO, fileno(file));
-
-        }
-
-        // piping input in/out
         if (p_in) {
-            // redirect read end to stdin
-            dup2(STDIN_FILENO, ppipe[0]);
-            close(ppipe[1]);
-        } else if (p_out) {
+            // redirect read end of inpipe to stdin
+            // dup2(pipes[inpipe][0], STDIN_FILENO);
+            // close(pipes[inpipe][1]);
+            dup2(pipes[inpipe_index][0], STDIN_FILENO);
+            // close(pipes[inpipe_index][0]);
+            close(pipes[inpipe_index][1]);
+        } 
+        if (p_out) {
             // redirect stdout to write end of pipe
-            dup2(ppipe[1], STDOUT_FILENO);
-            close(ppipe[0]);
-        } else {
-            close(ppipe[0]);
-            close(ppipe[1]);
+            // dup2(pipes[outpipe][1], STDOUT_FILENO);
+            // close(pipes[outpipe][0]);
+            dup2(pipes[outpipe_index][1], STDOUT_FILENO);
+            // close(pipes[outpipe_index][1]);
+            close(pipes[outpipe_index][0]);
         }
-        
-        // TODO: somehow push child process to job's process queue
-        pid_t child_pid = getpid();
+        // close remaining pipes
+        for (int i = 0; i < num_cmds; i++) {
+            if (p_in && i == inpipe_index) continue;
+            if (p_out && i == outpipe_index) continue;
+            close(pipes[i][0]); close(pipes[i][1]);
+        }
+
+        if (r_in) {
+            // redirect standard input of this command to file holder.redirect_in
+            dup2(r_in_fd, STDIN_FILENO);
+            close(r_in_fd);
+        } 
+        if (r_out) {
+            // redirect stdout to file specified by holder.redirect_out 
+            dup2(r_out_fd, STDOUT_FILENO);
+            close(r_out_fd);
+        }
+
 
         // execute stuff
         child_run_command(holder.cmd);
 
-    } else {
+        exit(0);
+
+    } else { 
+        
+
+        // push child process to back of pid_queue for job
+        Process childproc = { fork_pid };
+        push_back_ProcessQueue(&(job->pid_queue), childproc);
+
         // parent process
         parent_run_command(holder.cmd);
     }
+
+    if (r_in) close(r_in_fd);
+    if (r_out) close(r_out_fd);
+    if (p_in) close(pipes[inpipe_index][0]);
+    if (p_out) close(pipes[outpipe_index][1]);
+
+}
+
+int num_commands(CommandHolder* holders) {
+    CommandHolder* temp = holders;
+    int i;
+    for (i = 0; (get_command_holder_type(temp[i]) != EOC); i++);
+    temp = NULL;
+    return i;
 }
 
 // Run a list of commands
@@ -369,7 +469,8 @@ void run_script(CommandHolder* holders) {
     if (holders == NULL)
         return;
 
-    check_jobs_bg_status();
+    JobQueue *queue = get_job_queue();
+    check_jobs_bg_status(queue);
 
     if (get_command_holder_type(holders[0]) == EXIT &&
             get_command_holder_type(holders[1]) == EOC) {
@@ -378,8 +479,6 @@ void run_script(CommandHolder* holders) {
     }
 
     CommandType type;
-
-    JobQueue *queue = get_job_queue();
 
     // create new job 
     Job job;
@@ -390,29 +489,32 @@ void run_script(CommandHolder* holders) {
     else
         job.job_id = peek_back_JobQueue(queue).job_id + 1; 
 
+    /* Initialize pipe array */
+    int num_cmds = num_commands(holders);
+    int pipes[num_cmds][2];
+    for (int i = 0; i < num_cmds; i++)
+        pipe(pipes[i]);
+
     // Run all commands in the `holder` array
-    for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
-        create_process(holders[i]);
+    for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i) {
+        create_process(holders[i], pipes, num_cmds, i, &job);
+    }
 
     if (!(holders[0].flags & BACKGROUND)) {
         // Not a background Job
         // TODO: Wait for all processes under the job to complete
-        // pid_t wait_pid = peek_back_ProcessQueue(&(job.pid_queue)).pid;
-        // waitpid(wait_pid, NULL, 0);
-        wait(NULL);
-        IMPLEMENT_ME();
+        pid_t wait_pid = peek_back_ProcessQueue(&(job.pid_queue)).pid;
+        waitpid(wait_pid, NULL, 0);
+
+        free(job.cmd_str);
+        destroy_ProcessQueue(&(job.pid_queue));
     }
     else {
         // A background job.
+        
+        // push new job to job queue
+        push_back_JobQueue(queue, job);
 
-
-
-        // TODO: Push the new job to the job queue
-        printf("creating background job\n");
-        printf("%s\n", get_command_string());
-        IMPLEMENT_ME();
-
-        // TODO: Once jobs are implemented, uncomment and fill the following line
-        // print_job_bg_start(job_id, pid, cmd);
+        print_job_bg_start(job.job_id, peek_front_ProcessQueue(&(job.pid_queue)).pid, job.cmd_str);
     }
 }
