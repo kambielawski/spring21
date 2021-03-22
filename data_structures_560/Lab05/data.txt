@@ -1,0 +1,10 @@
+mcdonalds, 3.2, 100
+chipotle, 10.0, 150
+pizzahut, 23.5, 125
+starbucks, 2.0, 79
+dunkin, 3.4, 88
+tacobell, 2.1, 59
+dominos, 3.5, 134
+kfc, 4.1, 99
+panda express, 6.7, 47
+subway, 4.1, 99
