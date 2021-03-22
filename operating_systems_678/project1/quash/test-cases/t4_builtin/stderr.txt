@@ -1,0 +1,85 @@
+==57069== Memcheck, a memory error detector
+==57069== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==57069== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==57069== Command: /home/kam/dev/spring21/operating_systems_678/project1/quash/quash
+==57069== 
+==57070== 
+==57070== HEAP SUMMARY:
+==57070==     in use at exit: 82 bytes in 3 blocks
+==57070==   total heap usage: 15 allocs, 12 frees, 27,504 bytes allocated
+==57070== 
+==57070== LEAK SUMMARY:
+==57070==    definitely lost: 0 bytes in 0 blocks
+==57070==    indirectly lost: 0 bytes in 0 blocks
+==57070==      possibly lost: 0 bytes in 0 blocks
+==57070==    still reachable: 82 bytes in 3 blocks
+==57070==         suppressed: 0 bytes in 0 blocks
+==57070== Reachable blocks (those to which a pointer was found) are not shown.
+==57070== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==57070== 
+==57070== For lists of detected and suppressed errors, rerun with: -s
+==57070== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==57072== 
+==57072== HEAP SUMMARY:
+==57072==     in use at exit: 75 bytes in 3 blocks
+==57072==   total heap usage: 23 allocs, 20 frees, 28,947 bytes allocated
+==57072== 
+==57072== LEAK SUMMARY:
+==57072==    definitely lost: 0 bytes in 0 blocks
+==57072==    indirectly lost: 0 bytes in 0 blocks
+==57072==      possibly lost: 0 bytes in 0 blocks
+==57072==    still reachable: 75 bytes in 3 blocks
+==57072==         suppressed: 0 bytes in 0 blocks
+==57072== Reachable blocks (those to which a pointer was found) are not shown.
+==57072== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==57072== 
+==57072== For lists of detected and suppressed errors, rerun with: -s
+==57072== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==57075== 
+==57075== HEAP SUMMARY:
+==57075==     in use at exit: 90 bytes in 3 blocks
+==57075==   total heap usage: 42 allocs, 39 frees, 36,323 bytes allocated
+==57075== 
+==57075== LEAK SUMMARY:
+==57075==    definitely lost: 0 bytes in 0 blocks
+==57075==    indirectly lost: 0 bytes in 0 blocks
+==57075==      possibly lost: 0 bytes in 0 blocks
+==57075==    still reachable: 90 bytes in 3 blocks
+==57075==         suppressed: 0 bytes in 0 blocks
+==57075== Reachable blocks (those to which a pointer was found) are not shown.
+==57075== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==57075== 
+==57075== For lists of detected and suppressed errors, rerun with: -s
+==57075== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==57078== 
+==57078== HEAP SUMMARY:
+==57078==     in use at exit: 83 bytes in 3 blocks
+==57078==   total heap usage: 50 allocs, 47 frees, 37,774 bytes allocated
+==57078== 
+==57078== LEAK SUMMARY:
+==57078==    definitely lost: 0 bytes in 0 blocks
+==57078==    indirectly lost: 0 bytes in 0 blocks
+==57078==      possibly lost: 0 bytes in 0 blocks
+==57078==    still reachable: 83 bytes in 3 blocks
+==57078==         suppressed: 0 bytes in 0 blocks
+==57078== Reachable blocks (those to which a pointer was found) are not shown.
+==57078== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==57078== 
+==57078== For lists of detected and suppressed errors, rerun with: -s
+==57078== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==57069== 
+==57069== HEAP SUMMARY:
+==57069==     in use at exit: 56 bytes in 1 blocks
+==57069==   total heap usage: 57 allocs, 56 frees, 35,112 bytes allocated
+==57069== 
+==57069== LEAK SUMMARY:
+==57069==    definitely lost: 0 bytes in 0 blocks
+==57069==    indirectly lost: 0 bytes in 0 blocks
+==57069==      possibly lost: 0 bytes in 0 blocks
+==57069==    still reachable: 56 bytes in 1 blocks
+==57069==         suppressed: 0 bytes in 0 blocks
+==57069== Reachable blocks (those to which a pointer was found) are not shown.
+==57069== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==57069== 
+==57069== For lists of detected and suppressed errors, rerun with: -s
+==57069== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

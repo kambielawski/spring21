@@ -17,6 +17,7 @@
 typedef struct Process {
     pid_t pid;
 } Process;
+
 /* make a queue of pids */
 IMPLEMENT_DEQUE_STRUCT(ProcessQueue, Process);
 /* Define Process Queue functions */
@@ -42,7 +43,6 @@ typedef struct QuashState {
                      * or the command line */
   char* parsed_str; /**< Holds a string representing the parsed structure of the
                      * command input from the command line */
-  JobQueue job_queue;
 } QuashState;
 
 JobQueue* get_job_queue();

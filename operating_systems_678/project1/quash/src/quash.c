@@ -30,56 +30,57 @@ IMPLEMENT_DEQUE(ProcessQueue, Process);
  * Private Variables
  **************************************************************************/
 static QuashState state;
+JobQueue job_queue;
 
 /**************************************************************************
  * Private Functions
  **************************************************************************/
 static QuashState initial_state() {
-  return (QuashState) {
-    true,
-    isatty(STDIN_FILENO),
-    NULL,
-    new_JobQueue(1)
-  };
+    return (QuashState) {
+        true,
+        isatty(STDIN_FILENO),
+        NULL
+    };
 }
+
 
 // Print a prompt for a command
 static void print_prompt() {
-  bool should_free = true;
-  char* cwd = get_current_directory(&should_free);
+    bool should_free = true;
+    char* cwd = get_current_directory(&should_free);
 
-  assert(cwd != NULL);
+    assert(cwd != NULL);
 
-  char hostname[HOST_NAME_MAX];
+    char hostname[HOST_NAME_MAX];
 
-  // Get the hostname
-  gethostname(hostname, HOST_NAME_MAX);
+    // Get the hostname
+    gethostname(hostname, HOST_NAME_MAX);
 
-  // Remove first period and everything afterwards
-  for (int i = 0; hostname[i] != '\0'; ++i) {
-    if (hostname[i] == '.') {
-      hostname[i] = '\0';
-      break;
+    // Remove first period and everything afterwards
+    for (int i = 0; hostname[i] != '\0'; ++i) {
+        if (hostname[i] == '.') {
+            hostname[i] = '\0';
+            break;
+        }
     }
-  }
 
-  char* last_dir = cwd;
-  // Show only last directory
-  for (int i = 0; cwd[i] != '\0'; ++i) {
-    if (cwd[i] == '/' && cwd[i + 1] != '\0') {
-      last_dir = cwd + i + 1;
+    char* last_dir = cwd;
+    // Show only last directory
+    for (int i = 0; cwd[i] != '\0'; ++i) {
+        if (cwd[i] == '/' && cwd[i + 1] != '\0') {
+            last_dir = cwd + i + 1;
+        }
     }
-  }
 
-  char* username = getlogin();
+    char* username = getlogin();
 
-  // print the prompt
-  printf("[QUASH - %s@%s %s]$ ", username, hostname, last_dir);
+    // print the prompt
+    printf("[QUASH - %s@%s %s]$ ", username, hostname, last_dir);
 
-  fflush(stdout);
+    fflush(stdout);
 
-  if (should_free)
-    free(cwd);
+    if (should_free)
+        free(cwd);
 }
 
 
@@ -88,26 +89,35 @@ static void print_prompt() {
  **************************************************************************/
 // Check if loop is running
 bool is_running() {
-  return state.running;
+    return state.running;
 }
 
 // Get a copy of the string
 char* get_command_string() {
-  return strdup(state.parsed_str);
+    return strdup(state.parsed_str);
 }
 
 // Check if Quash is receiving input from the command line or not
 bool is_tty() {
-  return state.is_a_tty;
+    return state.is_a_tty;
 }
 
 // Stop Quash from requesting more input
 void end_main_loop() {
-  state.running = false;
+    state.running = false;
 }
 
-JobQueue* get_job_queue() {
-    return &(state.job_queue);
+JobQueue *get_job_queue() {
+    return &job_queue;
+}
+
+void destroy_job_queue() {
+    destroy_JobQueue(&job_queue);
+}
+
+void destroy_job(Job job) {
+    free(job.cmd_str);
+    destroy_ProcessQueue(&(job.pid_queue));
 }
 
 /**
@@ -121,30 +131,31 @@ JobQueue* get_job_queue() {
  */
 int main(int argc, char** argv) {
     state = initial_state();
-     
-  if (is_tty()) {
-    puts("Welcome to Quash!");
-    puts("Type \"exit\" or \"quit\" to quit");
-    puts("---------------------------------");
-    fflush(stdout);
-  }
+    job_queue = new_destructable_JobQueue(1, &destroy_job);
 
-  atexit(destroy_parser);
-  atexit(destroy_memory_pool);
+    if (is_tty()) {
+        puts("Welcome to Quash!");
+        puts("Type \"exit\" or \"quit\" to quit");
+        puts("---------------------------------");
+        fflush(stdout);
+    }
 
-  // Main execution loop
-  while (is_running()) {
-    if (is_tty())
-      print_prompt();
+    atexit(destroy_parser);
+    atexit(destroy_memory_pool);
 
-    initialize_memory_pool(1024);
-    CommandHolder* script = parse(&state);
+    // Main execution loop
+    while (is_running()) {
+        if (is_tty())
+            print_prompt();
 
-    if (script != NULL)
-      run_script(script);
+        initialize_memory_pool(1024);
+        CommandHolder* script = parse(&state);
 
-    destroy_memory_pool();
-  }
+        if (script != NULL)
+            run_script(script);
 
-  return EXIT_SUCCESS;
+        destroy_memory_pool();
+    }
+
+    return EXIT_SUCCESS;
 }
