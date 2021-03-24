@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <climits>
 
 #include "K_Ary_Heap.h"
 
@@ -12,9 +13,11 @@ struct Restaurant {
     int num_reviews;
 
     bool operator==(const Restaurant& rhs) {
-        return (name == rhs.name && distance == rhs.distance && num_reviews == rhs.num_reviews);
+        return (name == rhs.name);
     }
 };
+
+ostream& operator<<(ostream&, Restaurant&);
 
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
@@ -31,9 +34,9 @@ void readFromFile(ifstream& infile);
 Restaurant* parseRestaurantString(string line) const;
 
 /* Menu options */
-void addNewRestaurant() const;
-void removeNearest() const;
-void removeMostReviewed() const;
+void addNewRestaurant();
+void removeNearest();
+void removeMostReviewed();
 void searchNearest() const;
 void searchMostReviewed() const;
 void printByDistance() const;
