@@ -18,7 +18,7 @@ int getChoice() const;
 /* Menu options */
 void buildHeap();
 void insertItem();
-void deleteItem();
+void deleteMin();
 void printMinLevels() const;
 void printMaxLevels() const;
 

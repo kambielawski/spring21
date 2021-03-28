@@ -48,7 +48,7 @@ void Executive::run()
                 break;
             case 2: this->insertItem();
                 break;
-            case 3: this->deleteItem(); 
+            case 3: this->deleteMin(); 
                 break;
             case 4: this->printMinLevels(); 
                 break;
@@ -72,7 +72,7 @@ void Executive::insertItem()
 
 }
 
-void Executive::deleteItem()
+void Executive::deleteMin()
 {
 
 }

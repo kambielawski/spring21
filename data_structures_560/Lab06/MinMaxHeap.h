@@ -18,7 +18,16 @@ template <typename ItemType>
 class MinMaxHeap
 {
 private:
+static const int DEFAULT_HEAP_SIZE = 32;
 HeapNode<ItemType> *arr;
+int size;
+int capacity;
+
+/* Helper functions */
+void resizeHeapArray();
+bool isMinLevel(int index) const;
+int parent(int index) const;
+void swapIndeX(int a, int b);
 
 public:
 MinMaxHeap();
