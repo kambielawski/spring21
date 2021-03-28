@@ -13,6 +13,19 @@ Executive::Executive(char *filename)
 void Executive::readIntoHeap(ifstream& infile)
 {
     heap = new MinMaxHeap<int>();
+
+    string int_str;
+    int num;
+    while (getline(infile, int_str, ',')) {
+        try {
+            num = stoi(int_str); 
+            heap->insertItem(num, num);
+        } catch (exception& e) {
+            throw runtime_error("Couldn't read file\n");
+        }
+    }
+
+    heap->printHeap();
 }
 
 Executive::~Executive()
@@ -29,6 +42,8 @@ int Executive::getChoice() const
         cout << "Invalid entry - enter a number\n";
         /* cin.clear() clears the error flags of cin so new I/O operations can work */
         cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Enter choice: ";
         cin >> choice;
     }
 
@@ -79,7 +94,7 @@ void Executive::deleteMin()
 
 void Executive::printMinLevels() const
 {
-
+    heap->printMinLevels();
 }
 
 void Executive::printMaxLevels() const

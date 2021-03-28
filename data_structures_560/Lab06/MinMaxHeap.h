@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 template <typename ItemType>
@@ -27,7 +28,14 @@ int capacity;
 void resizeHeapArray();
 bool isMinLevel(int index) const;
 int parent(int index) const;
-void swapIndeX(int a, int b);
+int leftChild(int index) const;
+int rightChild(int index) const;
+void swap(HeapNode<ItemType> *a, HeapNode<ItemType> *b);
+void swapIndex(int a, int b);
+void swapUpMinLevels(int index);
+void swapUpMaxLevels(int index);
+void printGivenLevel(int level, int root) const;
+void inorderTraversal() const;
 
 public:
 MinMaxHeap();
@@ -36,6 +44,7 @@ void insertItem(int search_key, ItemType item);
 void deleteMin();
 void printMinLevels() const;
 void printMaxLevels() const;
+void printHeap() const;
 
 };
 
