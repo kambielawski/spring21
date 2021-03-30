@@ -4,7 +4,9 @@
 template <typename ItemType>
 MinMaxHeap<ItemType>::MinMaxHeap()
 {
-    arr = new HeapNode<ItemType>[DEFAULT_HEAP_SIZE];
+    arr = new HeapNode<ItemType>*[DEFAULT_HEAP_SIZE];
+    size = 0;
+    capacity = DEFAULT_HEAP_SIZE;
 }
 
 /*
@@ -24,7 +26,7 @@ template <typename ItemType>
 void MinMaxHeap<ItemType>::resizeHeapArray()
 {
     /* Double the array size */
-    HeapNode<ItemType> *newArr = new HeapNode<ItemType>[capacity * 2];
+    HeapNode<ItemType> **newArr = new HeapNode<ItemType>*[capacity * 2];
 
     /* Copy previous array to new array */
     for (int i = 0; i < size; i++)
@@ -36,9 +38,9 @@ void MinMaxHeap<ItemType>::resizeHeapArray()
 }
 
 template <typename ItemType>
-void MinMaxHeap<ItemType>::swap(HeapNode<ItemType> *a, HeapNode<ItemType> *b)
+void MinMaxHeap<ItemType>::swap(HeapNode<ItemType> **a, HeapNode<ItemType> **b)
 {
-    HeapNode<ItemType> temp = *a;
+    HeapNode<ItemType> *temp = *a;
     *a = *b;
     *b = temp;
 }
@@ -75,7 +77,7 @@ void MinMaxHeap<ItemType>::swapUpMinLevels(int index)
 
     int grandparent_index = this->parent(this->parent(index)); 
 
-    if (arr[index].item < arr[grandparent_index].item) {
+    if (arr[index]->item < arr[grandparent_index]->item) {
         this->swapIndex(index, grandparent_index);
         this->swapUpMinLevels(grandparent_index);
     }
@@ -90,7 +92,7 @@ void MinMaxHeap<ItemType>::swapUpMaxLevels(int index)
 
     int grandparent_index = this->parent(this->parent(index));
 
-    if (arr[index].item > arr[grandparent_index].item) {
+    if (arr[index]->item > arr[grandparent_index]->item) {
         this->swapIndex(index, grandparent_index);
         this->swapUpMaxLevels(grandparent_index);
     }
@@ -112,13 +114,13 @@ template <typename ItemType>
 void MinMaxHeap<ItemType>::printGivenLevel(int level, int root) const
 {
     /* index out of range of tree (base case) */
-    if (root > size) {
+    if (root >= size) {
         return;
     }
 
     /* print the level (leaf case) */
     if (level == 0) {
-        cout << arr[root].item << " i=" << root << ", ";
+        cout << arr[root]->item << " i=" << root << ", ";
         return;
     } 
     
@@ -131,7 +133,7 @@ template <typename ItemType>
 void MinMaxHeap<ItemType>::inorderTraversal() const
 {
     for (int i = 0; i < size; i++)
-        cout << arr[i].item << " ";
+        cout << arr[i]->item << " ";
     cout << endl;
 }
 
@@ -149,18 +151,22 @@ void MinMaxHeap<ItemType>::insertItem(int search_key, ItemType item)
     int parent_index = this->parent(new_item_index);
 
     /* Add new item to array */
-    HeapNode<ItemType> new_item = { search_key, item };
+    HeapNode<ItemType>* new_item = new HeapNode<ItemType>;
+    new_item->item = item;
+    new_item->search_key = search_key;
     arr[new_item_index] = new_item;
     size++;
 
     /* return if initially empty or if new item == its parent */
-    if (size == 1 || arr[new_item_index].item == arr[parent_index].item) 
+    if (size == 1 || arr[new_item_index]->item == arr[parent_index]->item) 
         return;
 
+    cout << "INSERT: " << item << endl;
+
     /* Compare item and its parent */
-    if (arr[new_item_index].item < arr[parent_index].item) {
+    if (arr[new_item_index]->item < arr[parent_index]->item) {
         /* Check parent's level */
-        if (this-isMinLevel(parent_index)) {
+        if (this->isMinLevel(parent_index)) {
             /* Swap upward accordingly */
             this->swapIndex(new_item_index, parent_index);
             this->swapUpMinLevels(parent_index);
@@ -175,7 +181,6 @@ void MinMaxHeap<ItemType>::insertItem(int search_key, ItemType item)
             this->swapUpMaxLevels(parent_index);
         }
     }
-    cout << "INSERT: " << item << endl;
     this->printHeap();
     this->inorderTraversal();
     cout << "\n\n";
