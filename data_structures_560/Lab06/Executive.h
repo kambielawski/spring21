@@ -14,7 +14,7 @@ MinMaxHeap<int>* heap;
 
 void readIntoHeap(ifstream& infile);
 void printMenu() const;
-int getChoice() const;
+int getChoice(string prompt) const;
 
 /* Menu options */
 void buildHeap();

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 #include <math.h>
 using namespace std;
 
@@ -20,7 +21,7 @@ class MinMaxHeap
 {
 private:
 static const int DEFAULT_HEAP_SIZE = 32;
-HeapNode<ItemType> **arr;
+HeapNode<ItemType> *arr;
 int size;
 int capacity;
 
@@ -30,10 +31,11 @@ bool isMinLevel(int index) const;
 int parent(int index) const;
 int leftChild(int index) const;
 int rightChild(int index) const;
-void swap(HeapNode<ItemType> **a, HeapNode<ItemType> **b);
+void swap(HeapNode<ItemType> *a, HeapNode<ItemType> *b);
 void swapIndex(int a, int b);
 void swapUpMinLevels(int index);
 void swapUpMaxLevels(int index);
+int findSmallestDescendent(int index) const;
 void printGivenLevel(int level, int root) const;
 void inorderTraversal() const;
 

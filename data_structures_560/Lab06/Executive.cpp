@@ -30,20 +30,21 @@ void Executive::readIntoHeap(ifstream& infile)
 
 Executive::~Executive()
 {
-
+    delete heap;
+    heap = nullptr;
 }
 
-int Executive::getChoice() const
+int Executive::getChoice(string prompt) const
 {
     int choice;
-    cout << "Enter choice: ";
+    cout << prompt;
     cin >> choice;
     while (cin.fail()) {
         cout << "Invalid entry - enter a number\n";
         /* cin.clear() clears the error flags of cin so new I/O operations can work */
         cin.clear();
         cin.ignore(10000, '\n');
-        cout << "Enter choice: ";
+        cout << prompt;
         cin >> choice;
     }
 
@@ -56,7 +57,7 @@ void Executive::run()
 
     while (choice != 6) {
         this->printMenu();
-        choice = this->getChoice();
+        choice = this->getChoice("Enter choice: ");
         
         switch (choice) {
             case 1: this->buildHeap();
@@ -71,6 +72,8 @@ void Executive::run()
                 break;
             case 6: cout << "Exiting...\n";
                 return;
+            case 7: heap->printHeap();
+                break;
             default: cout << "Invalid entry. Enter 1-6\n";
                 break;
         }
@@ -84,12 +87,16 @@ void Executive::buildHeap()
 
 void Executive::insertItem()
 {
+    int newItem = this->getChoice("Enter item to insert: ");
 
+    heap->insertItem(newItem, newItem);
+
+    cout << newItem << " successfully inserted\n";
 }
 
 void Executive::deleteMin()
 {
-
+    heap->deleteMin();
 }
 
 void Executive::printMinLevels() const
@@ -99,7 +106,7 @@ void Executive::printMinLevels() const
 
 void Executive::printMaxLevels() const
 {
-
+    heap->printMaxLevels();
 }
 
 void Executive::printMenu() const
@@ -110,5 +117,6 @@ void Executive::printMenu() const
     << "3. Delete\n"     // delete the root element
     << "4. Min level elements\n" // print only min-level elements (inorder)
     << "5. Max level elements\n" // print only max-level elements
-    << "6. Exit\n\n";
+    << "6. Exit\n\n"
+    << "7. Print heap\n"; // prints entire heap
 }
