@@ -47,6 +47,7 @@ void deleteMin();
 void printMinLevels() const;
 void printMaxLevels() const;
 void printHeap() const;
+bool isEmpty() const;
 
 };
 

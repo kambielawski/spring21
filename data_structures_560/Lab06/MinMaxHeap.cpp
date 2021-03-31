@@ -208,6 +208,12 @@ int MinMaxHeap<ItemType>::findSmallestDescendent(int index) const
 }
 
 template <typename ItemType>
+bool MinMaxHeap<ItemType>::isEmpty() const
+{
+    return size == 0;
+}
+
+template <typename ItemType>
 void MinMaxHeap<ItemType>::deleteMin()
 {
     /* Small heap cases */
@@ -229,7 +235,6 @@ void MinMaxHeap<ItemType>::deleteMin()
     if (arr[last_element_index].search_key <= arr[smallest_descendent_index].search_key) {
         arr[0] = arr[last_element_index];
     } else {
-        cout << smallest_descendent_index << "\n\n";
         /* Make second smallest the new root */
         arr[0] = arr[smallest_descendent_index];
 
@@ -263,7 +268,6 @@ void MinMaxHeap<ItemType>::deleteMin()
         }
     }
     size--;
-    this->printHeap();
 }
 
 template <typename ItemType>

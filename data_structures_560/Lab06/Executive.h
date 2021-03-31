@@ -11,8 +11,10 @@ class Executive
 {
 private:
 MinMaxHeap<int>* heap;
+char *file;
 
 void readIntoHeap(ifstream& infile);
+void readIntoArray(ifstream& infile);
 void printMenu() const;
 int getChoice(string prompt) const;
 

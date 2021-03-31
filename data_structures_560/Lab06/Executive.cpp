@@ -2,18 +2,24 @@
 
 Executive::Executive(char *filename)
 {
+    file = filename;
     ifstream infile(filename);
     if (infile.is_open()) {
+        heap = new MinMaxHeap<int>();
         this->readIntoHeap(infile);
     } else {
         throw runtime_error("Couldn't open file");
     }
 }
 
+Executive::~Executive()
+{
+    delete heap;
+    heap = nullptr;
+}
+
 void Executive::readIntoHeap(ifstream& infile)
 {
-    heap = new MinMaxHeap<int>();
-
     string int_str;
     int num;
     while (getline(infile, int_str, ',')) {
@@ -24,14 +30,6 @@ void Executive::readIntoHeap(ifstream& infile)
             throw runtime_error("Couldn't read file\n");
         }
     }
-
-    heap->printHeap();
-}
-
-Executive::~Executive()
-{
-    delete heap;
-    heap = nullptr;
 }
 
 int Executive::getChoice(string prompt) const
@@ -82,7 +80,16 @@ void Executive::run()
 
 void Executive::buildHeap()
 {
+    ifstream infile(file);
+    if (infile.is_open()) {
+        while (!heap->isEmpty())
+            heap->deleteMin();
+        this->readIntoHeap(infile);
+    } else {
+        throw runtime_error("Couldn't reopen file");
+    }
 
+    heap->printHeap();
 }
 
 void Executive::insertItem()
