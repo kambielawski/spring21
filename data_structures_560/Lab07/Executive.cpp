@@ -53,7 +53,7 @@ void Executive::run()
 {
     int choice = -1;
 
-    while (choice != 6) {
+    while (choice != 9) {
         this->printMenu();
         choice = this->getChoice("Enter choice: ");
         
@@ -64,15 +64,19 @@ void Executive::run()
                 break;
             case 3: this->deleteMin(); 
                 break;
-            case 4: this->printMinLevels(); 
+            case 4: this->deleteMax();
                 break;
-            case 5: this->printMaxLevels(); 
+            case 5: this->findMin(); 
                 break;
-            case 6: cout << "Exiting...\n";
-                return;
+            case 6: this->findMax(); 
+                break;
             case 7: heap->printHeap();
                 break;
-            default: cout << "Invalid entry. Enter 1-6\n";
+            case 8: this->experimentalProfiling();
+                break;
+            case 9: cout << "Exiting...\n";
+                return;
+            default: cout << "Invalid entry. Enter 1-9\n";
                 break;
         }
     }
@@ -101,9 +105,32 @@ void Executive::insertItem()
     cout << newItem << " successfully inserted\n";
 }
 
+void Executive::findMin()
+{
+    cout << "Minimum element is " << heap->findMin() << endl;
+}
+
+void Executive::findMax()
+{
+    cout << "Maximum element is " << heap->findMax() << endl;
+}
+
 void Executive::deleteMin()
 {
-    heap->deleteMin();
+    try {
+        heap->deleteMin();
+    } catch (exception& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+}
+
+void Executive::deleteMax()
+{
+    try {
+        heap->deleteMax();
+    } catch (exception& e) {
+        cout << "Error: " << e.what() << endl;
+    }
 }
 
 void Executive::printMinLevels() const
@@ -116,14 +143,21 @@ void Executive::printMaxLevels() const
     heap->printMaxLevels();
 }
 
+void Executive::experimentalProfiling()
+{
+    
+}
+
 void Executive::printMenu() const
 {
     cout << "=================\n"
     << "1. Build Heap\n" // Build heap using a top-down approach
     << "2. Insert\n"     // insert item into minmax heap
-    << "3. Delete\n"     // delete the root element
-    << "4. Min level elements\n" // print only min-level elements (inorder)
-    << "5. Max level elements\n" // print only max-level elements
-    << "6. Exit\n\n"
-    << "7. Print heap\n"; // prints entire heap
+    << "3. Delete Min\n"     // delete the root element
+    << "4. Delete Max\n"         // deletes maximum node
+    << "5. Find Min\n"           // returns min node
+    << "6. Find Max\n"           // returns max node
+    << "7. Level Order\n"        // prints heap
+    << "8. Experimental Profiling\n" // experimental profiling
+    << "9. Exit\n\n";
 }

@@ -21,9 +21,13 @@ int getChoice(string prompt) const;
 /* Menu options */
 void buildHeap();
 void insertItem();
+void findMin();
+void findMax();
 void deleteMin();
+void deleteMax();
 void printMinLevels() const;
 void printMaxLevels() const;
+void experimentalProfiling();
 
 public:
 Executive(char *filename);

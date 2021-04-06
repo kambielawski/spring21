@@ -192,6 +192,7 @@ int MinMaxHeap<ItemType>::findSmallestDescendent(int index) const
     int right_child_right = this->leftChild(this->rightChild(index));
     int left_child = this->leftChild(index);
     int right_child = this->rightChild(index);
+
     if (left_child_left < size && arr[left_child_left].search_key < arr[min_index].search_key)
         min_index = left_child_left;
     if (left_child_right < size && arr[left_child_right].search_key < arr[min_index].search_key)
@@ -217,12 +218,9 @@ template <typename ItemType>
 void MinMaxHeap<ItemType>::deleteMin()
 {
     /* Small heap cases */
+    if (size == 0)
+        throw runtime_error("Can't delete from an empty heap");
     if (size == 1) {
-        size--;
-        return;
-    }
-    if (size == 2) {
-        arr[0] = arr[1];
         size--;
         return;
     }
@@ -268,6 +266,109 @@ void MinMaxHeap<ItemType>::deleteMin()
         }
     }
     size--;
+}
+
+template <typename ItemType>
+int MinMaxHeap<ItemType>::findLargestDescendent(int index, int search_depth) const
+{
+    int max_index = index;
+    int left_child_index = this->leftChild(index);
+    int right_child_index = this->rightChild(index);
+    if (search_depth == 1) {
+
+        if (left_child_index > size-1 && right_child_index > size-1) {
+            return index; 
+        } else if (left_child_index > size-1) {
+            if (arr[right_child_index].item > arr[index].item)
+                return right_child_index;
+            else
+                return index;
+        } else if (right_child_index > size-1) {
+            if (arr[left_child_index].item > arr[index].item)
+                return left_child_index;
+            else
+                return index;
+        } else {
+            if (arr[left_child_index].item > arr[max_index].item)
+                max_index = left_child_index;
+            if (arr[right_child_index].item > arr[max_index].item)
+                max_index = right_child_index;
+            return max_index;
+        }
+    } else {
+        /* check right subtree */
+        int contender_index = this->findLargestDescendent(right_child_index, search_depth-1);
+        if (arr[contender_index].item > arr[max_index].item)
+            max_index = contender_index;
+        /* check left subtree */
+        contender_index = this->findLargestDescendent(left_child_index, search_depth-1);
+        if (arr[contender_index].item > arr[max_index].item)
+            max_index = contender_index;
+        
+        return max_index;
+    }
+}
+
+template <typename ItemType>
+void MinMaxHeap<ItemType>::deleteMax()
+{
+    /* small heap size cases */
+    if (size == 0)
+        throw runtime_error("Can't delete from an empty heap");
+    if (size == 1) {
+        size--;
+        return;
+    }
+
+    int max_index = this->findLargestDescendent(0, 2); 
+    int second_largest_index = this->findLargestDescendent(max_index, 2);
+    int last_element_index = size-1;
+
+    if (arr[last_element_index].search_key >= arr[second_largest_index].search_key) {
+        /* when the last element == the largest element, just replace it */
+        arr[second_largest_index] = arr[last_element_index];
+    } else {
+        /* fill max hole w/ 2nd largest element */
+        arr[max_index] = arr[second_largest_index];
+        arr[second_largest_index] = arr[last_element_index];
+        /* now there is a hole at second largest index */
+        int parent_second_largest = this->parent(second_largest_index);
+        /* now compare p(L2) and last element; if equal, just replace */
+        if (arr[second_largest_index].search_key < arr[parent_second_largest].search_key)
+            this->swapIndex(second_largest_index, parent_second_largest);
+
+        /* now put it in its proper place */
+        int insertion_index = second_largest_index;
+        int largest_descendent;
+        while (insertion_index < size && (largest_descendent = this->findLargestDescendent(insertion_index, 2)) != insertion_index)
+        {
+            this->swapIndex(insertion_index, largest_descendent);
+            insertion_index = largest_descendent;
+
+            /* ensure we don't break the minmax property w/ the min node above */
+            if (arr[insertion_index].search_key < arr[this->parent(insertion_index)].search_key)
+                this->swapIndex(insertion_index, this->parent(insertion_index));
+        }
+    }
+    size--;
+}
+
+template <typename ItemType>
+ItemType MinMaxHeap<ItemType>::findMin() const
+{
+    if (size == 0 )
+        throw runtime_error("Heap is empty");
+
+    return arr[0].item;
+}
+
+template <typename ItemType>
+ItemType MinMaxHeap<ItemType>::findMax() const
+{
+    if (size == 0)
+        throw runtime_error("Heap is empty");
+
+    return arr[this->findLargestDescendent(0, 2)].item;
 }
 
 template <typename ItemType>

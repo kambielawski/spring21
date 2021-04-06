@@ -36,6 +36,7 @@ void swapIndex(int a, int b);
 void swapUpMinLevels(int index);
 void swapUpMaxLevels(int index);
 int findSmallestDescendent(int index) const;
+int findLargestDescendent(int index, int search_depth) const;
 void printGivenLevel(int level, int root) const;
 void inorderTraversal() const;
 
@@ -43,7 +44,10 @@ public:
 MinMaxHeap();
 ~MinMaxHeap();
 void insertItem(int search_key, ItemType item);
+ItemType findMin() const;
+ItemType findMax() const;
 void deleteMin();
+void deleteMax();
 void printMinLevels() const;
 void printMaxLevels() const;
 void printHeap() const;
