@@ -35,6 +35,7 @@ void MinMaxHeap<ItemType>::resizeHeapArray()
     /* Delete previous array and replace with resized array */
     delete [] arr;
     arr = newArr;
+    capacity = capacity * 2;
 }
 
 template <typename ItemType>
@@ -271,42 +272,31 @@ void MinMaxHeap<ItemType>::deleteMin()
 template <typename ItemType>
 int MinMaxHeap<ItemType>::findLargestDescendent(int index, int search_depth) const
 {
-    int max_index = index;
-    int left_child_index = this->leftChild(index);
-    int right_child_index = this->rightChild(index);
-    if (search_depth == 1) {
+    if (index >= size)
+        throw runtime_error("index out of range");
 
-        if (left_child_index > size-1 && right_child_index > size-1) {
-            return index; 
-        } else if (left_child_index > size-1) {
-            if (arr[right_child_index].item > arr[index].item)
-                return right_child_index;
-            else
-                return index;
-        } else if (right_child_index > size-1) {
-            if (arr[left_child_index].item > arr[index].item)
-                return left_child_index;
-            else
-                return index;
-        } else {
-            if (arr[left_child_index].item > arr[max_index].item)
-                max_index = left_child_index;
-            if (arr[right_child_index].item > arr[max_index].item)
-                max_index = right_child_index;
-            return max_index;
-        }
-    } else {
-        /* check right subtree */
-        int contender_index = this->findLargestDescendent(right_child_index, search_depth-1);
-        if (arr[contender_index].item > arr[max_index].item)
-            max_index = contender_index;
-        /* check left subtree */
-        contender_index = this->findLargestDescendent(left_child_index, search_depth-1);
-        if (arr[contender_index].item > arr[max_index].item)
-            max_index = contender_index;
-        
-        return max_index;
-    }
+    int max_index = index;
+    int left_child_left = this->leftChild(this->leftChild(index));
+    int left_child_right = this->rightChild(this->leftChild(index));
+    int right_child_left = this->leftChild(this->rightChild(index));
+    int right_child_right = this->leftChild(this->rightChild(index));
+    int left_child = this->leftChild(index);
+    int right_child = this->rightChild(index);
+
+    if (left_child_left < size && arr[left_child_left].search_key > arr[max_index].search_key)
+        max_index = left_child_left;
+    if (left_child_right < size && arr[left_child_right].search_key > arr[max_index].search_key)
+        max_index = left_child_right;
+    if (right_child_left < size && arr[right_child_left].search_key > arr[max_index].search_key)
+        max_index = right_child_left;
+    if (right_child_right < size && arr[right_child_right].search_key > arr[max_index].search_key)
+        max_index = right_child_right;
+    if (left_child < size && arr[left_child].search_key > arr[max_index].search_key)
+        max_index = left_child;
+    if (right_child < size && arr[right_child].search_key > arr[max_index].search_key)
+        max_index = right_child;
+    return max_index;
+
 }
 
 template <typename ItemType>

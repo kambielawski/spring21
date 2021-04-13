@@ -58,7 +58,7 @@ void Executive::run()
         choice = this->getChoice("Enter choice: ");
         
         switch (choice) {
-            case 1: this->buildHeap();
+            case 1: this->buildHeapFromFile();
                 break;
             case 2: this->insertItem();
                 break;
@@ -82,7 +82,27 @@ void Executive::run()
     }
 }
 
-void Executive::buildHeap()
+void Executive::clearHeap()
+{
+    while (!heap->isEmpty()) {
+        heap->deleteMin();
+    }   
+}
+
+/* assumes heap is empty */
+void Executive::buildRandomHeap(int num_items)
+{
+    /* now insert random numbers into heap */
+    srand(time(NULL)); 
+
+    int item, j;
+    for (j = 0; j < num_items; j++) {
+        item = rand() * 100 % 500000;
+        heap->insertItem(item, item);
+    }
+}
+
+void Executive::buildHeapFromFile()
 {
     ifstream infile(file);
     if (infile.is_open()) {
@@ -145,9 +165,138 @@ void Executive::printMaxLevels() const
 
 void Executive::experimentalProfiling()
 {
+    float times[5][5];
+    int i;
     
+    cout << "==================================\n"
+    << "Profiling (profiling w/ valgrind takes significantly longer\n"
+    << "===================================\n";
+
+    for (i = 0; i < 5; i++) {
+        times[0][i] = this->timeBuildHeap((i+1) * 100000);
+        times[1][i] = this->timeFindMin((i+1) * 100000);
+        times[2][i] = this->timeFindMax((i+1) * 100000);
+        times[3][i] = this->timeDeleteMin((i+1) * 100000);
+        times[4][i] = this->timeDeleteMax((i+1) * 100000);
+    }
+
+    /* divide CPU times by clocks_per_sec */
+    for (i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++)
+            times[i][j] /= CLOCKS_PER_SEC;
+    }
+
+    cout << "Input Size\t100,000\t200,000\t300,000\t400,000\t500,000\n";
+    cout << "BuildHeap\t";
+    for (i = 0; i < 5; i++)
+        cout << times[0][i] << "\t";
+
+    cout << "\nFindMin  \t";
+    for (i = 0; i < 5; i++)
+        cout << times[1][i] << "\t";
+
+    cout << "\nFindMax  \t";
+    for (i = 0; i < 5; i++)
+        cout << times[2][i] << "\t";
+        
+    cout << "\nDeleteMin\t";
+    for (i = 0; i < 5; i++)
+        cout << times[3][i] << "\t";
+
+    cout << "\nDeleteMax\t";
+    for (i = 0; i < 5; i++)
+        cout << times[4][i] << "\t";
+
+    cout << "\n\n";
 }
 
+/* TIMING FUNCTIONS */
+float Executive::timeBuildHeap(int num_items)
+{
+    /* clear contents of heap */
+    this->clearHeap();
+
+    clock_t t;
+    t = clock();
+    this->buildRandomHeap(num_items);
+    t = clock() - t;
+
+    return t;
+}
+
+float Executive::timeDeleteMin(int num_items)
+{
+    /* clear heap & ensure heap is proper size */
+    this->clearHeap();   
+    this->buildRandomHeap(num_items);
+
+    /* now time deletes */
+    int i;
+    clock_t t;
+    t = clock();
+    for (i = 0; i < num_items; i++) {
+        heap->deleteMin();
+    }
+    t = clock() - t;
+
+    return t;
+}
+
+float Executive::timeDeleteMax(int num_items)
+{
+    /* clear heap & ensure heap is proper size */
+    this->clearHeap();   
+    this->buildRandomHeap(num_items);
+
+    /* now time deletes */
+    int i;
+    clock_t t;
+    t = clock();
+    for (i = 0; i < num_items; i++) {
+        heap->deleteMax();
+    }
+    t = clock() - t;
+
+    return t;
+}
+
+float Executive::timeFindMin(int num_items)
+{
+    /* clear heap & ensure heap is proper size */
+    this->clearHeap();   
+    this->buildRandomHeap(num_items);
+
+    /* now time deletes */
+    int i;
+    clock_t t;
+    t = clock();
+    for (i = 0; i < num_items; i++) {
+        heap->findMin();
+    }
+    t = clock() - t;
+
+    return t;
+}
+
+float Executive::timeFindMax(int num_items)
+{
+    /* clear heap & ensure heap is proper size */
+    this->clearHeap();   
+    this->buildRandomHeap(num_items);
+
+    /* now time deletes */
+    int i;
+    clock_t t;
+    t = clock();
+    for (i = 0; i < num_items; i++) {
+        heap->findMax();
+    }
+    t = clock() - t;
+
+    return t;
+}
+
+/* MENU FUNCTION */
 void Executive::printMenu() const
 {
     cout << "=================\n"
