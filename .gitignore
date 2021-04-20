@@ -1,0 +1,9 @@
+eecs678_base.qcow
+kam.qcow
+.ipynb_checkpoints/*
+.ipynb_checkpoints
+*.swp
+*.tar.gz
+SouthParkData-master/*
+SouthParkData-master
+
