@@ -1,0 +1,116 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Mar  5 09:52:21 2021
+# Process ID: 23856
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/regfile/regfile.xpr
+update_compile_order -fileset sources_1
+set_property -name {xsim.simulate.runtime} -value {300ns} -objects [get_filesets sim_1]
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+add_bp {/home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/design_sources/regfile.vhd} 66
+remove_bps -file {/home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/design_sources/regfile.vhd} -line 66
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {1000ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {300ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/simulation_sources/regfile_wave.wcfg
+source regfile_tb.tcl
+close_sim
+close_project

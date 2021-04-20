@@ -1,0 +1,30 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Apr 19 15:35:56 2021
+# Process ID: 18267
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg
+source cu_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg
+source cu_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg
+source cu_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg
+source cu_tb.tcl
+close_sim

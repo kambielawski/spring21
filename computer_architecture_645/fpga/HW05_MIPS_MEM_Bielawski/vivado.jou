@@ -1,0 +1,73 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Mar 11 11:44:22 2021
+# Process ID: 4281
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project data_memory /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/data_memory -part xc7a100tcsg324-1
+set_property target_language VHDL [current_project]
+add_files {/home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/design_sources/my_packages/ieee_2008/math_real.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/design_sources/DataMem.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/design_sources/my_packages/ieee_2008/math_real-body.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/design_sources/my_packages/my_package.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/design_sources/my_packages/my_package-body.vhd}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_tb.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {300ns} -objects [get_filesets sim_1]
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+launch_simulation
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/simulation_sources/DataMem_wave.wcfg
+source DataMem_tb.tcl
+close_sim

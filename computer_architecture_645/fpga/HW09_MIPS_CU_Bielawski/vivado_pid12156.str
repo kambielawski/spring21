@@ -1,0 +1,484 @@
+/*
+
+Xilinx Vivado v2020.2 (64-bit) [Major: 2020, Minor: 2]
+SW Build: 3064766 on Wed Nov 18 09:12:47 MST 2020
+IP Build: 3064653 on Wed Nov 18 14:17:31 MST 2020
+
+Process ID (PID): 12156
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Mon Apr 19 14:50:28 CDT 2021
+Time zone: 	Central Standard Time (America/Chicago)
+
+OS: Ubuntu
+OS Version: 5.8.0-50-generic
+OS Architecture: amd64
+Available processors (cores): 12
+
+Display: 0
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	/tools/Xilinx/Vivado/2020.2/tps/lnx64/jre11.0.2
+Java executable location: 	/tools/Xilinx/Vivado/2020.2/tps/lnx64/jre11.0.2/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	kam
+User home directory: /home/kam
+User working directory: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /tools/Xilinx/Vivado
+HDI_APPROOT: /tools/Xilinx/Vivado/2020.2
+RDI_DATADIR: /tools/Xilinx/Vivado/2020.2/data
+RDI_BINDIR: /tools/Xilinx/Vivado/2020.2/bin
+
+Vivado preferences file location: /home/kam/.Xilinx/Vivado/2020.2/vivado.xml
+Vivado preferences directory: /home/kam/.Xilinx/Vivado/2020.2/
+Vivado layouts directory: /home/kam/.Xilinx/Vivado/2020.2/data/layouts
+PlanAhead jar file location: 	/tools/Xilinx/Vivado/2020.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.log
+Vivado journal file location: 	/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-12156-kam-TUF-GAMING-FX504GM-FX80GM
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /tools/Xilinx/Vivado/2020.2/ids_lite/ISE
+XILINX_DSP: /tools/Xilinx/Vivado/2020.2/ids_lite/ISE
+XILINX_HLS: /tools/Xilinx/Vitis_HLS/2020.2
+XILINX_PLANAHEAD: /tools/Xilinx/Vivado/2020.2
+XILINX_VITIS: 
+XILINX_VIVADO: /tools/Xilinx/Vivado/2020.2
+XILINX_VIVADO_HLS: /tools/Xilinx/Vivado/2020.2
+
+
+GUI allocated memory:	185 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,488 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+selectButton(PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, "Create Project"); // y
+// Run Command: PAResourceCommand.PACommandNames_NEW_PROJECT
+// [GUI Memory]: 116 MB (+118769kb) [00:00:08]
+// [Engine Memory]: 1,486 MB (+1407158kb) [00:00:08]
+// [GUI Memory]: 123 MB (+1249kb) [00:00:08]
+// f (cr): New Project: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 1,494 MB. GUI used memory: 70 MB. Current time: 4/19/21, 2:50:29 PM CDT
+selectButton("NEXT", "Next >"); // JButton
+// Elapsed time: 33 seconds
+setText(PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, "MIPS_CU"); // aa
+selectButton("NEXT", "Next >"); // JButton
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_DIRECTORIES, "Add Directories"); // a
+setFolderChooser("/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources");
+selectButton("NEXT", "Next >"); // JButton
+selectButton("NEXT", "Next >"); // JButton
+selectComboBox(PAResourceEtoH.FPGAChooser_CATEGORY, "General Purpose", 2); // v
+selectComboBox(PAResourceEtoH.FPGAChooser_FAMILY, "Artix-7", 1); // v
+selectComboBox(PAResourceEtoH.FPGAChooser_SPEED, "-1", 1); // v
+selectComboBox(PAResourceEtoH.FPGAChooser_PACKAGE, "csg324", 3); // v
+selectTable(PAResourceEtoH.FPGAChooser_FPGA_TABLE, "xc7a75tcsg324-1 ; 324 ; 210 ; 47200 ; 94400 ; 105 ; 0 ; 180 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 3, "xc7a75tcsg324-1", 0); // w
+selectTable(PAResourceEtoH.FPGAChooser_FPGA_TABLE, "xc7a100tcsg324-1 ; 324 ; 210 ; 63400 ; 126800 ; 135 ; 0 ; 240 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 0 ; 1 ; 6 ;  ;  ;  ;  ;  ; 0.95 ; 0.95 ; 1.05", 4, "xc7a100tcsg324-1", 0); // w
+selectButton("NEXT", "Next >"); // JButton
+// bz (cr):  Create Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// WARNING: HEventQueue.dispatchEvent() is taking  1710 ms.
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: create_project MIPS_CU /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU -part xc7a100tcsg324-1 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2020.2/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,557 MB. GUI used memory: 76 MB. Current time: 4/19/21, 2:51:30 PM CDT
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'. 
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: PROJECT_CHANGE
+// Tcl Message: set_property target_language VHDL [current_project] 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files {/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/my_package-body.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/cu.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/ieee_2008/math_real.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/my_package.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/ieee_2008/math_real-body.vhdl} 
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 63 seconds
+dismissDialog("Create Project"); // bz
+dismissDialog("New Project"); // f
+// [Engine Memory]: 1,561 MB (+619kb) [00:01:11]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Add Sources]", 2, false); // u
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cr): Add Sources: addNotify
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectRadioButton(PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, "Add or create simulation sources"); // a
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+String[] filenames31467 = {"/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_tb.vhd", "/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg"};
+setFileChooser(filenames31467);
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 17 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: set_property SOURCE_SET sources_1 [get_filesets sim_1] 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_tb.vhd 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sim_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, CU(behav) (cu.vhd)]", 1, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, CU(behav) (cu.vhd)]", 1, false, false, false, false, false, true); // D - Double Click
+// [Engine Memory]: 1,643 MB (+3826kb) [00:01:39]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,643 MB. GUI used memory: 77 MB. Current time: 4/19/21, 2:51:59 PM CDT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// [GUI Memory]: 132 MB (+3279kb) [00:01:41]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sim_1 
+// Elapsed time: 40 seconds
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // N
+selectCodeEditor("cu.vhd", 216, 503); // bP
+selectCodeEditor("cu.vhd", 262, 535); // bP
+selectCodeEditor("cu.vhd", 233, 507); // bP
+// HMemoryUtils.trashcanNow. Engine heap size: 1,663 MB. GUI used memory: 77 MB. Current time: 4/19/21, 2:53:09 PM CDT
+// Elapsed time: 296 seconds
+selectCodeEditor("cu.vhd", 98, 504); // bP
+// Elapsed time: 117 seconds
+selectCodeEditor("cu.vhd", 466, 501); // bP
+selectCodeEditor("cu.vhd", 318, 540); // bP
+selectCodeEditor("cu.vhd", 169, 501); // bP
+selectCodeEditor("cu.vhd", 169, 501, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 24 seconds
+selectCodeEditor("cu.vhd", 110, 501); // bP
+selectCodeEditor("cu.vhd", 110, 501, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("cu.vhd", 482, 487); // bP
+selectCodeEditor("cu.vhd", 548, 513); // bP
+selectCodeEditor("cu.vhd", 546, 504); // bP
+// Elapsed time: 18 seconds
+unMinimizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // az
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 4); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Utility Sources]", 4); // D
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Libraries", 1); // i
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib]", 2); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, my_package-body.vhd]", 6, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, my_package-body.vhd]", 6, false, false, false, false, false, true); // D - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, my_package.vhd]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL, xil_defaultlib, my_package.vhd]", 3, false, false, false, false, false, true); // D - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "my_package-body.vhd", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "cu.vhd", 1); // m
+// Elapsed time: 63 seconds
+selectCodeEditor("cu.vhd", 217, 545); // bP
+// Elapsed time: 50 seconds
+selectCodeEditor("cu.vhd", 115, 549); // bP
+selectCodeEditor("cu.vhd", 115, 549, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("cu.vhd", 204, 583); // bP
+selectCodeEditor("cu.vhd", 18, 595); // bP
+// Elapsed time: 18 seconds
+selectCodeEditor("cu.vhd", 26, 493); // bP
+selectCodeEditor("cu.vhd", 278, 532); // bP
+selectCodeEditor("cu.vhd", 191, 544); // bP
+// Elapsed time: 94 seconds
+selectCodeEditor("cu.vhd", 540, 517); // bP
+// Elapsed time: 21 seconds
+selectCodeEditor("cu.vhd", 215, 593); // bP
+selectCodeEditor("cu.vhd", 153, 617); // bP
+selectCodeEditor("cu.vhd", 152, 610); // bP
+selectCodeEditor("cu.vhd", 152, 608); // bP
+selectCodeEditor("cu.vhd", 195, 543); // bP
+// Elapsed time: 60 seconds
+selectCodeEditor("cu.vhd", 168, 647); // bP
+selectCodeEditor("cu.vhd", 169, 637); // bP
+// Elapsed time: 18 seconds
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // N
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // N
+selectCodeEditor("cu.vhd", 90, 386); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("cu.vhd", 74, 642); // bP
+// Elapsed time: 67 seconds
+selectCodeEditor("cu.vhd", 154, 638); // bP
+selectCodeEditor("cu.vhd", 136, 666); // bP
+// Elapsed time: 15 seconds
+selectCodeEditor("cu.vhd", 176, 628); // bP
+selectCodeEditor("cu.vhd", 146, 659); // bP
+selectCodeEditor("cu.vhd", 155, 670); // bP
+// Elapsed time: 36 seconds
+selectCodeEditor("cu.vhd", 252, 696); // bP
+selectCodeEditor("cu.vhd", 203, 693); // bP
+selectCodeEditor("cu.vhd", 203, 693, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("cu.vhd", 165, 730); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("cu.vhd", 148, 679); // bP
+selectCodeEditor("cu.vhd", 230, 714); // bP
+// Elapsed time: 283 seconds
+selectCodeEditor("cu.vhd", 233, 586); // bP
+selectCodeEditor("cu.vhd", 284, 612); // bP
+// Elapsed time: 16 seconds
+selectCodeEditor("cu.vhd", 237, 650); // bP
+selectCodeEditor("cu.vhd", 229, 648); // bP
+selectCodeEditor("cu.vhd", 229, 638); // bP
+// Elapsed time: 17 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "my_package-body.vhd", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "my_package.vhd", 3); // m
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // F
+// Elapsed time: 16 seconds
+selectCodeEditor("my_package.vhd", 34, 354); // bP
+selectCodeEditor("my_package.vhd", 259, 351); // bP
+// Elapsed time: 19 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "cu.vhd", 1); // m
+// Elapsed time: 51 seconds
+selectCodeEditor("cu.vhd", 342, 691); // bP
+selectCodeEditor("cu.vhd", 322, 682); // bP
+selectCodeEditor("cu.vhd", 322, 682); // bP
+selectCodeEditor("cu.vhd", 113, 696); // bP
+selectCodeEditor("cu.vhd", 359, 681); // bP
+selectCodeEditor("cu.vhd", 279, 588); // bP
+typeControlKey((HResource) null, "cu.vhd", 'v'); // bP
+typeControlKey(null, null, 'z');
+typeControlKey((HResource) null, "cu.vhd", 'v'); // bP
+selectCodeEditor("cu.vhd", 258, 609); // bP
+selectCodeEditor("cu.vhd", 421, 687); // bP
+selectCodeEditor("cu.vhd", 246, 597); // bP
+selectCodeEditor("cu.vhd", 251, 619); // bP
+selectCodeEditor("cu.vhd", 250, 611); // bP
+selectCodeEditor("cu.vhd", 324, 690); // bP
+// Elapsed time: 54 seconds
+selectCodeEditor("cu.vhd", 362, 610); // bP
+// Elapsed time: 19 seconds
+selectCodeEditor("cu.vhd", 121, 384); // bP
+selectCodeEditor("cu.vhd", 332, 678); // bP
+selectCodeEditor("cu.vhd", 382, 629); // bP
+// Elapsed time: 44 seconds
+selectCodeEditor("cu.vhd", 299, 637); // bP
+selectCodeEditor("cu.vhd", 371, 646); // bP
+selectCodeEditor("cu.vhd", 363, 498); // bP
+selectCodeEditor("cu.vhd", 196, 618); // bP
+// Elapsed time: 102 seconds
+selectCodeEditor("cu.vhd", 198, 587); // bP
+// Elapsed time: 14 seconds
+selectCodeEditor("cu.vhd", 334, 648); // bP
+selectCodeEditor("cu.vhd", 406, 656); // bP
+// Elapsed time: 75 seconds
+selectCodeEditor("cu.vhd", 296, 730); // bP
+// HMemoryUtils.trashcanNow. Engine heap size: 1,672 MB. GUI used memory: 79 MB. Current time: 4/19/21, 3:23:09 PM CDT
+// Elapsed time: 55 seconds
+selectCodeEditor("cu.vhd", 395, 559); // bP
+selectCodeEditor("cu.vhd", 385, 577); // bP
+selectCodeEditor("cu.vhd", 297, 633); // bP
+selectCodeEditor("cu.vhd", 298, 685); // bP
+selectCodeEditor("cu.vhd", 289, 718); // bP
+selectCodeEditor("cu.vhd", 333, 728); // bP
+// Elapsed time: 20 seconds
+selectCodeEditor("cu.vhd", 167, 606); // bP
+// Elapsed time: 42 seconds
+selectCodeEditor("cu.vhd", 238, 653); // bP
+selectCodeEditor("cu.vhd", 145, 150); // bP
+selectCodeEditor("cu.vhd", 226, 150); // bP
+selectCodeEditor("cu.vhd", 218, 139); // bP
+// Elapsed time: 32 seconds
+selectCodeEditor("cu.vhd", 142, 163); // bP
+selectCodeEditor("cu.vhd", 141, 169); // bP
+selectCodeEditor("cu.vhd", 113, 159); // bP
+selectCodeEditor("cu.vhd", 136, 147); // bP
+// Elapsed time: 22 seconds
+selectCodeEditor("cu.vhd", 157, 199); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("cu.vhd", 397, 218); // bP
+// Elapsed time: 27 seconds
+selectCodeEditor("cu.vhd", 219, 228); // bP
+// Elapsed time: 15 seconds
+selectCodeEditor("cu.vhd", 319, 238); // bP
+selectCodeEditor("cu.vhd", 331, 193); // bP
+selectCodeEditor("cu.vhd", 436, 224); // bP
+selectCodeEditor("cu.vhd", 183, 177); // bP
+selectCodeEditor("cu.vhd", 240, 196); // bP
+selectCodeEditor("cu.vhd", 240, 195); // bP
+selectCodeEditor("cu.vhd", 239, 188); // bP
+selectCodeEditor("cu.vhd", 284, 280); // bP
+selectCodeEditor("cu.vhd", 322, 191); // bP
+selectCodeEditor("cu.vhd", 401, 326); // bP
+selectCodeEditor("cu.vhd", 211, 628); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,689 MB. GUI used memory: 79 MB. Current time: 4/19/21, 3:27:54 PM CDT
+// Elapsed time: 80 seconds
+selectCodeEditor("cu.vhd", 312, 608); // bP
+selectCodeEditor("cu.vhd", 313, 614); // bP
+selectCodeEditor("cu.vhd", 316, 634); // bP
+selectCodeEditor("cu.vhd", 290, 623); // bP
+selectCodeEditor("cu.vhd", 297, 612); // bP
+// Elapsed time: 14 seconds
+selectCodeEditor("cu.vhd", 498, 437); // bP
+// Elapsed time: 27 seconds
+selectCodeEditor("cu.vhd", 123, 472); // bP
+selectCodeEditor("cu.vhd", 130, 474); // bP
+// Elapsed time: 12 seconds
+selectCodeEditor("cu.vhd", 250, 463); // bP
+selectCodeEditor("cu.vhd", 245, 475); // bP
+// Elapsed time: 28 seconds
+selectCodeEditor("cu.vhd", 414, 464); // bP
+selectCodeEditor("cu.vhd", 412, 468); // bP
+selectCodeEditor("cu.vhd", 247, 472); // bP
+selectCodeEditor("cu.vhd", 517, 470); // bP
+// Elapsed time: 142 seconds
+selectCodeEditor("cu.vhd", 250, 541); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+selectCodeEditor("cu.vhd", 407, 502); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+selectCodeEditor("cu.vhd", 134, 483); // bP
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // N
+selectMenu(PAResourceItoN.MainMenuMgr_FLOW, "Flow"); // ac
+selectMenu(PAResourceItoN.MainMenuMgr_SETTINGS, "Settings"); // ah
+selectMenu(PAResourceItoN.MainMenuMgr_SETTINGS, "Settings"); // ah
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_SETTINGS, "Simulation Settings..."); // ak
+dismissMenu(PAResourceItoN.MainMenuMgr_FLOW, "Flow"); // ac
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_SETTINGS
+// d (cr): Settings: addNotify
+selectTab(PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_SIMULATION, "Simulation", 2); // i
+selectButton(RDIResource.BaseDialog_APPLY, "Apply"); // a
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: set_property -name {xsim.simulate.runtime} -value {400ns} -objects [get_filesets sim_1] 
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// [GUI Memory]: 143 MB (+4302kb) [00:42:49]
+dismissDialog("Settings"); // d
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // u
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, "Run Behavioral Simulation"); // ak
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL
+// e (cr):  Run Simulation : addNotify
+// TclEventType: LAUNCH_SIM
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: launch_simulation 
+// Tcl Message: Command: launch_simulation  
+// Tcl Message: INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' INFO: [SIM-utils-51] Simulation object is 'sim_1' INFO: [SIM-utils-54] Inspecting design source files for 'cu_tb' in fileset 'sim_1'... INFO: [USF-XSim-97] Finding global include files... INFO: [USF-XSim-98] Fetching design files from 'sim_1'... INFO: [USF-XSim-2] XSim::Compile design INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// TclEventType: LAUNCH_SIM_LOG
+// Tcl Message: INFO: [USF-XSim-69] 'compile' step finished in '1' seconds INFO: [USF-XSim-3] XSim::Elaborate design INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,709 MB. GUI used memory: 81 MB. Current time: 4/19/21, 3:33:14 PM CDT
+// TclEventType: LAUNCH_SIM
+// Tcl Message: INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds INFO: [USF-XSim-99] Step results log file:'/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim/elaborate.log' 
+// Tcl Message: ERROR: [USF-XSim-62] 'elaborate' step failed with error(s). Please check the Tcl console output or '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim/elaborate.log' file for more information. ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation. 
+// Tcl Message: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors. 
+// CommandFailedException: ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  
+// HOptionPane Error: 'ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  (Run Simulation)'
+// 'd' command handler elapsed time: 5 seconds
+selectButton("OptionPane.button", "OK"); // JButton
+// a (cr): Critical Messages: addNotify
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Critical Messages"); // a
+selectCodeEditor("cu.vhd", 227, 386, false, false, false, true, false); // bP - Popup Trigger
+selectCodeEditor("cu.vhd", 65, 205); // bP
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1]", 11, true); // D - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1]", 11); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1, VHDL]", 12); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1, VHDL]", 12); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1, VHDL]", 12); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation-Only Sources, sim_1, VHDL]", 12); // D
+selectCodeEditor("cu.vhd", 589, 382); // bP
+// Elapsed time: 19 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // u
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, "Run Behavioral Simulation"); // ak
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL
+// e (cr):  Run Simulation : addNotify
+// TclEventType: LAUNCH_SIM
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: launch_simulation 
+// Tcl Message: Command: launch_simulation  
+// Tcl Message: INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' INFO: [SIM-utils-51] Simulation object is 'sim_1' INFO: [SIM-utils-54] Inspecting design source files for 'cu_tb' in fileset 'sim_1'... INFO: [USF-XSim-97] Finding global include files... INFO: [USF-XSim-98] Fetching design files from 'sim_1'... INFO: [USF-XSim-2] XSim::Compile design INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// TclEventType: LAUNCH_SIM_LOG
+// Tcl Message: xvhdl --incr --relax -prj cu_tb_vhdl.prj Waiting for jobs to finish... No pending jobs, compilation finished. 
+// Tcl Message: INFO: [USF-XSim-69] 'compile' step finished in '1' seconds INFO: [USF-XSim-3] XSim::Elaborate design INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// TclEventType: LAUNCH_SIM
+// Tcl Message: INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds INFO: [USF-XSim-99] Step results log file:'/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim/elaborate.log' 
+// Tcl Message: ERROR: [USF-XSim-62] 'elaborate' step failed with error(s). Please check the Tcl console output or '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim/elaborate.log' file for more information. ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation. 
+// Tcl Message: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors. 
+// CommandFailedException: ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  
+// HOptionPane Error: 'ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  (Run Simulation)'
+// 'd' command handler elapsed time: 4 seconds
+selectButton("OptionPane.button", "OK"); // JButton
+// a (cr): Critical Messages: addNotify
+// Elapsed time: 12 seconds
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Critical Messages"); // a
+selectCodeEditor("cu.vhd", 121, 482); // bP
+selectCodeEditor("cu.vhd", 121, 482); // bP
+selectCodeEditor("cu.vhd", 364, 286); // bP
+selectCodeEditor("cu.vhd", 362, 314); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 30 seconds
+selectCodeEditor("cu.vhd", 349, 341); // bP
+// [Engine Memory]: 1,726 MB (+965kb) [00:44:45]
+selectCodeEditor("cu.vhd", 331, 456); // bP
+selectCodeEditor("cu.vhd", 346, 159); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,742 MB. GUI used memory: 119 MB. Current time: 4/19/21, 3:35:24 PM CDT
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // u
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, "Run Behavioral Simulation"); // ak
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL
+// e (cr):  Run Simulation : addNotify
+// TclEventType: LAUNCH_SIM
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: launch_simulation 
+// Tcl Message: Command: launch_simulation  
+// Tcl Message: INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' INFO: [SIM-utils-51] Simulation object is 'sim_1' INFO: [SIM-utils-54] Inspecting design source files for 'cu_tb' in fileset 'sim_1'... INFO: [USF-XSim-97] Finding global include files... INFO: [USF-XSim-98] Fetching design files from 'sim_1'... INFO: [USF-XSim-2] XSim::Compile design INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// TclEventType: LAUNCH_SIM_LOG
+// Tcl Message: xvhdl --incr --relax -prj cu_tb_vhdl.prj INFO: [VRFC 10-163] Analyzing VHDL file "/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/cu.vhd" into library xil_defaultlib INFO: [VRFC 10-3107] analyzing entity 'CU' Waiting for jobs to finish... No pending jobs, compilation finished. 
+// Tcl Message: INFO: [USF-XSim-69] 'compile' step finished in '1' seconds INFO: [USF-XSim-3] XSim::Elaborate design INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim' 
+// Tcl Message:  ****** Webtalk v2020.2 (64-bit)   **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020   **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.  source /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU/MIPS_CU.sim/sim_1/behav/xsim/xsim.dir/cu_tb_behav/webtalk/xsim_webtalk.tcl -notrace 
