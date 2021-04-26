@@ -1,0 +1,63 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Mar 11 12:13:52 2021
+# Process ID: 9815
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/DataMem/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project project_1 /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/project_1 -part xc7a100tcsg324-1
+set_property target_language VHDL [current_project]
+add_files {/home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/design_sources/my_packages/ieee_2008/math_real-body.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/design_sources/my_packages/my_package-body.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/design_sources/my_packages/ieee_2008/math_real.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/design_sources/InstrMem.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/design_sources/my_packages/my_package.vhd}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_tb.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {300ns} -objects [get_filesets sim_1]
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW05_MIPS_MEM_Bielawski/InstrMem/simulation_sources/InstrMem_wave.wcfg
+source InstrMem_tb.tcl
+close_sim

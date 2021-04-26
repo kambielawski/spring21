@@ -1,0 +1,10 @@
+0.7
+2020.2
+Nov 18 2020
+09:20:35
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/alu.vhd,1616004391,vhdl,,,,alu,,,,,,,,
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/ieee_2008/math_real-body.vhdl,1464876298,vhdl,,,,,,,,,,,,
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/ieee_2008/math_real.vhdl,1464876298,vhdl,/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/ieee_2008/math_real-body.vhdl;/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/my_package-body.vhd,,,math_real,,,,,,,,
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/my_package-body.vhd,1506113052,vhdl,,,,,,,,,,,,
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/my_package.vhd,1506978358,vhdl,/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/alu.vhd;/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/design_sources/my_packages/my_package-body.vhd,,,my_package,,,,,,,,
+/home/kam/dev/school/computer_architecture_645/fpga/HW06_MIPS_ALU_Bielawski/simulation_sources/alu_tb.vhd,1601506830,vhdl,,,,alu_tb,,,,,,,,

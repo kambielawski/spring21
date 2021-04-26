@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Apr 19 14:50:12 2021
+# Process ID: 12156
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project MIPS_CU /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/MIPS_CU -part xc7a100tcsg324-1
+set_property target_language VHDL [current_project]
+add_files {/home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/my_package-body.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/cu.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/ieee_2008/math_real.vhdl /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/my_package.vhd /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/design_sources/my_packages/ieee_2008/math_real-body.vhdl}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg
+add_files -fileset sim_1 -norecurse /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_tb.vhd
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {400ns} -objects [get_filesets sim_1]
+launch_simulation
+launch_simulation
+launch_simulation
+open_wave_config /home/kam/dev/school/computer_architecture_645/fpga/HW09_MIPS_CU_Bielawski/simulation_sources/cu_wave.wcfg

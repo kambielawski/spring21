@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Mar  8 12:08:49 2021
+# Process ID: 8639
+# Current directory: /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski
+# Command line: vivado
+# Log file: /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/vivado.log
+# Journal file: /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/regfile/regfile.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/kam/dev/school/computer_architecture_645/fpga/HW04_MIPS_RegFile_Bielawski/regfile/regfile.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Mar  8 13:21:24 2021...
